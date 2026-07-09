@@ -134,8 +134,8 @@
   }
   .portrait img{
     width:100%;height:100%;display:block;object-fit:cover;
-    object-position:var(--px,68%) var(--py,46%);
-    transform:scale(var(--zoom,1.2));transform-origin:var(--px,68%) var(--py,46%);
+    object-position:var(--px,70%) var(--py,34%);
+    transform:scale(var(--zoom,1.4));transform-origin:var(--px,70%) var(--py,34%);
   }
   .cropctl{margin-top:14px;padding:16px 16px 14px;border-radius:14px;background:var(--bg-2);border:1px dashed rgba(9,20,48,.2)}
   .cropctl .row{display:flex;align-items:center;gap:12px;margin:9px 0}
@@ -323,10 +323,10 @@
       <div class="portrait-col">
         <div class="portrait"><img id="portraitImg" src="photos/callie-portrait.jpg" alt="Callie beside a hot air balloon at dawn, rig on"></div>
         <div class="cropctl">
-          <div class="row"><label>Zoom</label><input type="range" id="cZoom" min="1" max="2.5" step="0.01" value="1.2"></div>
-          <div class="row"><label>Left / right</label><input type="range" id="cX" min="0" max="100" step="1" value="68"></div>
-          <div class="row"><label>Up / down</label><input type="range" id="cY" min="0" max="100" step="1" value="46"></div>
-          <div class="readout" id="cReadout">object-position: 68% 46%; zoom: 1.20</div>
+          <div class="row"><label>Zoom</label><input type="range" id="cZoom" min="1" max="2.5" step="0.01" value="1.4"></div>
+          <div class="row"><label>Left / right</label><input type="range" id="cX" min="0" max="100" step="1" value="70"></div>
+          <div class="row"><label>Up / down</label><input type="range" id="cY" min="0" max="100" step="1" value="34"></div>
+          <div class="readout" id="cReadout">object-position: 70% 34%; zoom: 1.40</div>
           <div class="hint">Frame the crop you want, then tell me these numbers. I'll bake it in and remove the sliders.</div>
         </div>
       </div>
