@@ -127,36 +127,33 @@
   .idlink:hover{transform:translateY(-2px)}
 
   /* featured proof (Ford) */
-  .featured{
-    border-radius:22px;overflow:hidden;border:1px solid var(--line);
-    background:radial-gradient(700px 360px at 50% 10%, var(--sky-1), var(--sky-2));
-    box-shadow:0 34px 84px -44px rgba(9,20,48,.5);
+  .fordwrap{
+    border:1px solid var(--line);border-radius:22px;
+    background:
+      radial-gradient(700px 320px at 8% 0%, rgba(0,100,210,.08), transparent 60%),
+      var(--bg-2);
+    padding:clamp(22px,3vw,34px);box-shadow:0 30px 80px -46px rgba(9,20,48,.24);
   }
-  .featured .video{
-    position:relative;aspect-ratio:16/9;
-    background-color:#0a1130;background-size:cover;background-position:center;
+  .fordhead{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:24px}
+  .fordhead .badge{
+    font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+    color:#fff;background:var(--accent);padding:6px 11px;border-radius:8px;
+  }
+  .fordhead .fordtitle{font-size:clamp(20px,2.4vw,26px);font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+  .fordhead .fordsub{font-size:14px;color:var(--muted)}
+  .phcard{
+    border-radius:16px;min-height:520px;background:var(--bg-2);border:1px dashed rgba(9,20,48,.18);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding:24px;
+  }
+  .phcard .play{
+    width:60px;height:60px;border-radius:50%;background:rgba(0,100,210,.08);border:1px solid rgba(0,100,210,.22);
     display:flex;align-items:center;justify-content:center;
   }
-  .featured .video .badge{
-    position:absolute;top:16px;left:16px;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
-    color:#fff;background:rgba(9,20,48,.6);border:1px solid rgba(255,255,255,.25);padding:6px 11px;border-radius:8px;
+  .phcard .play::after{content:"";border-left:16px solid var(--accent);border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px}
+  .phcard .todo{
+    font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+    color:#9a6b00;background:rgba(245,175,2,.14);border:1px solid rgba(245,175,2,.4);padding:6px 11px;border-radius:7px;
   }
-  .featured .video .placeholder{
-    text-align:center;color:#c7cef0;padding:20px;
-  }
-  .featured .video .placeholder .play{
-    width:64px;height:64px;border-radius:50%;margin:0 auto 14px;
-    background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);
-    display:flex;align-items:center;justify-content:center;
-  }
-  .featured .video .placeholder .play::after{content:"";border-left:18px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:4px}
-  .featured .video .placeholder .todo{
-    display:inline-block;margin-top:6px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
-    color:#ffd873;background:rgba(245,175,2,.16);border:1px solid rgba(245,175,2,.45);padding:6px 11px;border-radius:7px;
-  }
-  .featured .meta{padding:20px 24px 22px;display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
-  .featured .meta .t{font-size:18px;font-weight:800;letter-spacing:-.01em;color:#fff}
-  .featured .meta .s{font-size:13px;color:#aeb7d6}
 
   /* proof grid */
   .grid{
@@ -271,17 +268,17 @@
       <span class="ebaylive"><span class="wm"><b>e</b><b>b</b><b>a</b><b>y</b></span><span class="live">LIVE</span></span>
     </div>
     <h1>One balloon.<br><span class="sky">Infinite stages.</span></h1>
-    <p class="lede">A campaign like nothing else on earth: brand a hot air balloon in full eBay Live livery, suspend a real stage beneath it, and stream the whole thing live where <b>every object on screen is tap to buy</b>. Most people have no idea this is even possible. It is.</p>
+    <p class="lede">A campaign like nothing else: brand a hot air balloon in full eBay Live livery and hang a real, changeable stage beneath it, flying in open sky. Built for eBay Live, with the ambition of streaming it and putting what's on the platform within reach of the audience. Most people have no idea this is even possible.</p>
 
     <div class="stage">
-      <img src="photos/lasertag-stage.png" alt="eBay Live branded hot air balloon suspending a live laser tag arena in open sky at sunset">
+      <img src="photos/lasertag-stage.png" alt="eBay Live branded hot air balloon suspending a laser tag arena in open sky at sunset">
     </div>
-    <p class="hero-cap">The stage in the sky, full eBay Live livery, streamed live and shoppable in real time.</p>
+    <p class="hero-cap">The stage in the sky, wrapped in full eBay Live livery.</p>
   </header>
 
   <!-- 1. THE OPPORTUNITY -->
   <div class="section-label">The opportunity</div>
-  <p class="lead-statement">A real stage, flown under a balloon, <span class="sky">streamed live and shoppable.</span> Here is exactly how it works.</p>
+  <p class="lead-statement">A real stage, flown under a branded balloon, <span class="sky">built for eBay Live.</span> Here is exactly how it works.</p>
   <div class="steps">
     <div class="step">
       <span class="n">1</span>
@@ -295,11 +292,11 @@
     </div>
     <div class="step">
       <span class="n">3</span>
-      <h4>Stream it live and shoppable</h4>
-      <p>The whole show runs live on eBay Live, and every item in frame is biddable and tap to buy the second it appears.</p>
+      <h4>Built for eBay Live</h4>
+      <p>Designed for eBay Live from the start. The ambition is to stream it and tie what's on the platform back to eBay, so the audience can act on what they see.</p>
     </div>
   </div>
-  <p class="kicker-line">This has been pulled off for major brands already. It has <b>never been done as a live, shoppable show.</b> That gap is the opening for eBay Live.</p>
+  <p class="kicker-line">This has been pulled off for major brands already. It has <b>never been done for a marketplace like eBay.</b> That gap is the opening for eBay Live.</p>
 
   <!-- 2. INTRODUCING ME -->
   <div class="section-label">Introducing me</div>
@@ -314,44 +311,44 @@
   <div class="section-label">The proof</div>
   <p class="section-intro">None of this is a render. It has been rigged, flown, and filmed for real. <b>Start with the biggest one.</b></p>
 
-  <div class="featured">
-    <div class="video" style="/* TODO: drop Ford still or embed the Ford commercial here */">
+  <div class="fordwrap">
+    <div class="fordhead">
       <span class="badge">Featured</span>
-      <div class="placeholder">
-        <div class="play"></div>
-        <div class="todo">TODO: Ford commercial link (Callie to send)</div>
-      </div>
+      <span class="fordtitle">The Ford commercial</span>
+      <span class="fordsub">A major brand, this exact crew, flown for real.</span>
     </div>
-    <div class="meta">
-      <span class="t">The Ford commercial</span>
-      <span class="s">A major brand, this exact crew, flown for real.</span>
+    <div class="grid">
+      <div class="card">
+        <div class="tag"><span class="name">Ford, suspended and flown</span></div>
+        <div class="igframe"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DS7JjTKj75f/" data-instgrm-version="14"></blockquote></div>
+      </div>
+      <div class="card">
+        <div class="tag"><span class="name">Ford, second angle</span></div>
+        <div class="igframe"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DTeDHjfjUdd/" data-instgrm-version="14"></blockquote></div>
+      </div>
     </div>
   </div>
 
-  <p class="section-intro" style="margin-top:40px">And it goes far beyond one commercial:</p>
+  <p class="section-intro" style="margin-top:40px">And Ford is not the only brand that has trusted this crew in the sky:</p>
   <div class="grid">
     <div class="card">
-      <div class="tag"><span class="name">A truck, suspended and flown</span></div>
-      <div class="igframe"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DSiKfdRgPdI/" data-instgrm-version="14"></blockquote></div>
+      <div class="tag"><span class="name">Stake, a match played in the sky</span></div>
+      <div class="igframe"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DaJFJmPvAe8/" data-instgrm-version="14"></blockquote></div>
     </div>
     <div class="card">
-      <div class="tag"><span class="name">The slide</span></div>
-      <div class="igframe"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DTgYfSokjOx/" data-instgrm-version="14"></blockquote></div>
-    </div>
-    <div class="card">
-      <div class="tag"><span class="name">The slingshot</span></div>
-      <div class="igframe"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DYXaIRSxeq0/" data-instgrm-version="14"></blockquote></div>
+      <div class="tag"><span class="name">Stake, a vault cracked at altitude</span></div>
+      <div class="igframe"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DUOh_h8Djug/" data-instgrm-version="14"></blockquote></div>
     </div>
   </div>
 
   <!-- 4. THE CONCEPTS -->
   <div class="section-label">The concepts</div>
   <p class="lead-statement">One balloon, <span class="sky">infinite stages.</span></p>
-  <p class="section-intro">The rig stays the same. The show on it changes every time, a new live episode with a new reason to tune in. A franchise eBay can run all year, not a one off. Everything on the platform is on eBay while it's on screen.</p>
+  <p class="section-intro">The rig stays the same. The show on it changes every time, a new reason to tune in. A franchise eBay can run all year, not a one off. And every one of these is <b>original, built for this, never done in the sky before.</b></p>
   <div class="taprow">
-    <span class="tap"><span class="buy">TAP</span> the jersey off the pitch</span>
-    <span class="tap"><span class="buy">TAP</span> the console in the lounge</span>
-    <span class="tap"><span class="buy">TAP</span> the sneakers off the ramp</span>
+    <span class="tap"><span class="buy">TAP</span> the blaster from the arena</span>
+    <span class="tap"><span class="buy">TAP</span> the boots off the bull</span>
+    <span class="tap"><span class="buy">TAP</span> the find from the claw</span>
     <span class="tap"><span class="buy">TAP</span> the card in the finale</span>
   </div>
   <div class="menu">
@@ -359,44 +356,44 @@
       <div class="shot" style="background-image:url('photos/lasertag-stage.png')"><span class="num">01</span></div>
       <div class="body">
         <h3>Aerial Laser Tag</h3>
-        <p class="what">A full arena rigged under the balloon. Two teams, real stakes, FPV cameras weaving through the fight while the sky moves behind them.</p>
-        <span class="shop">Gear, tech and kit, shoppable live</span>
+        <p class="what">A neon arena rigged under the balloon. Two teams, real stakes, FPV cameras weaving through the firefight while the sky moves behind them.</p>
+        <span class="shop">Blasters, gear and kit</span>
       </div>
     </div>
     <div class="exp">
-      <div class="shot" style="background-image:url('assets/concept-fiveaside.jpg')"><span class="num">02</span></div>
+      <div class="shot"><span class="num">02</span></div>
       <div class="body">
-        <h3>Sky Five a Side</h3>
-        <p class="what">A caged pitch in the clouds. Real match, real goals, cleats and kit and the ball itself all tap to buy as the game plays out.</p>
-        <span class="shop">Boots, jerseys, kit, shoppable live</span>
+        <h3>Sky Wipeout</h3>
+        <p class="what">The gauntlet from every living room, three thousand feet up. Giant bouncing obstacles, spinning arms, and nothing under the course but open sky.</p>
+        <span class="shop">Activewear and sneakers</span>
       </div>
     </div>
     <div class="exp">
-      <div class="shot" style="background-image:url('assets/concept-lounge.jpg')"><span class="num">03</span></div>
+      <div class="shot"><span class="num">03</span></div>
       <div class="body">
-        <h3>The Sky Lounge</h3>
-        <p class="what">A retro gaming den floating at altitude. Consoles, CRTs, collectibles and vinyl, the exact stuff eBay is built on, live and biddable.</p>
-        <span class="shop">Retro tech and collectibles, shoppable live</span>
+        <h3>The Floor Is Lava</h3>
+        <p class="what">The internet's favourite game, played where the floor really would end you. An obstacle run across a suspended course with nothing below but the clouds.</p>
+        <span class="shop">Sneakers and streetwear</span>
       </div>
     </div>
     <div class="exp">
-      <div class="shot" style="background-image:url('photos/live-selling.png')"><span class="num">04</span></div>
+      <div class="shot"><span class="num">04</span></div>
       <div class="body">
-        <h3>The Floating Marketplace</h3>
-        <p class="what">eBay itself, made physical and put in the sky. A stall of rare finds hovering over the landscape, every item live and going to the highest bid.</p>
-        <span class="shop">Rare finds, shoppable live</span>
+        <h3>The Human Claw Machine</h3>
+        <p class="what">eBay turned into a game. A giant crane and claw loaded with real finds, worked live over the void. Land the grab and it's yours. Miss and it swings back out over nothing.</p>
+        <span class="shop">Real eBay finds</span>
       </div>
     </div>
   </div>
 
   <p class="section-intro" style="margin-top:40px;margin-bottom:20px">And the bench keeps the franchise running:</p>
   <div class="bench">
-    <div class="seg"><span class="t">Half court basketball</span><span class="d">A rim in the sky. Dunk contest at altitude, shoes and ball shoppable live.</span></div>
-    <div class="seg"><span class="t">Sneaker skate ramp</span><span class="d">A mini ramp under the balloon. Every deck, truck and pair drops live.</span></div>
-    <div class="seg"><span class="t">Sky DJ set</span><span class="d">A booth in the clouds. Decks, records and gear all tap to buy on beat.</span></div>
-    <div class="seg"><span class="t">Aerial boxing ring</span><span class="d">A ring rigged in open air. Gloves, robes and gear biddable round by round.</span></div>
-    <div class="seg"><span class="t">Sky mini golf</span><span class="d">A floating course. Putters, novelty finds and prizes, shoppable live.</span></div>
-    <div class="seg finale"><span class="t">The Card Break Finale</span><span class="d">The segment eBay fans expect, now the closing act of a full sky show. Live rips, live bids, live at altitude.</span></div>
+    <div class="seg"><span class="t">Sky Dodgeball</span><span class="d">Two teams, one platform, nowhere to hide. Dodge wrong and the only way off the court is down.</span></div>
+    <div class="seg"><span class="t">Aerial Bull Riding</span><span class="d">A mechanical bull bucking at altitude. Eight seconds is hard enough without the clouds spinning below you.</span></div>
+    <div class="seg"><span class="t">Bubble Football</span><span class="d">Players sealed in giant bubbles, bouncing a match across the platform and ricocheting toward the edge.</span></div>
+    <div class="seg"><span class="t">Sky Sumo</span><span class="d">Two challengers, padded suits, one ring in the sky. Shove your rival to the rope and the sky does the rest.</span></div>
+    <div class="seg"><span class="t">The Drop Zone</span><span class="d">A game show of trapdoors over open air. Answer wrong, the floor opens, last one standing takes it.</span></div>
+    <div class="seg finale"><span class="t">The Card Break Finale</span><span class="d">The moment eBay fans know, now the closing act of a full sky show. The rip and the reveal, at altitude.</span></div>
   </div>
 
   <!-- 5. THE NUMBERS -->
