@@ -1,0 +1,45 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hero image, border options</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:oklch(19% .03 265);--muted:oklch(50% .02 260);--hairline:oklch(92% .008 255);--navy1:#16265f;--navy2:#0a1130;--navy3:#060a24;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Sora',system-ui,sans-serif;background:#fff;color:var(--ink);padding:48px clamp(18px,4vw,56px) 120px}
+  .wrap{max-width:1100px;margin:0 auto}
+  h1{font-size:28px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+  .sub{color:var(--muted);font-size:15px;margin-bottom:48px}
+  .opt{margin-bottom:64px}
+  .lbl{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .desc{font-size:13px;color:var(--muted);margin-bottom:18px}
+  .pick{font-weight:800;color:oklch(55% .19 253)}
+  img{display:block;width:100%}
+
+  /* A: clean, no frame */
+  .a img{border-radius:22px;box-shadow:0 34px 80px -34px rgba(9,20,48,.34)}
+  /* B: thin navy edge */
+  .b .panel{background:radial-gradient(120% 80% at 50% 40%,var(--navy1),var(--navy2) 60%,var(--navy3));border-radius:24px;padding:10px}
+  .b img{border-radius:16px}
+  /* C: hairline border, no navy */
+  .c img{border-radius:22px;border:1px solid var(--hairline);box-shadow:0 30px 70px -40px rgba(9,20,48,.28)}
+  /* D: full-bleed, square corners */
+  .d img{border-radius:0;box-shadow:0 24px 60px -40px rgba(9,20,48,.25)}
+  /* E: current, thick navy panel */
+  .e .panel{background:radial-gradient(120% 80% at 50% 40%,var(--navy1),var(--navy2) 60%,var(--navy3));border-radius:26px;padding:clamp(24px,4vw,56px)}
+  .e img{border-radius:16px;border:1px solid rgba(255,255,255,.1)}
+</style></head><body>
+<div class="wrap">
+  <h1>Hero image, border options</h1>
+  <p class="sub">Same image, five frame treatments. Tell me the letter you want and I'll apply it to the deck.</p>
+
+  <div class="opt a"><div class="lbl"><span class="pick">Option A</span> &middot; Clean, no frame</div><div class="desc">Image sits on the page, soft rounded corners and a drop shadow. No navy, no border. The most modern and least busy.</div><img src="photos/football-hero.png" alt=""></div>
+
+  <div class="opt b"><div class="lbl"><span class="pick">Option B</span> &middot; Thin navy edge</div><div class="desc">A slim navy border hugging the image instead of the thick frame. Keeps the cinematic feel, much tighter.</div><div class="panel"><img src="photos/football-hero.png" alt=""></div></div>
+
+  <div class="opt c"><div class="lbl"><span class="pick">Option C</span> &middot; Hairline border</div><div class="desc">Just a faint light-gray hairline and a shadow, on white. Editorial and quiet.</div><img src="photos/football-hero.png" alt=""></div>
+
+  <div class="opt d"><div class="lbl"><span class="pick">Option D</span> &middot; Full-bleed, square</div><div class="desc">Edge to edge, no rounding, no frame. Bold and photographic.</div><img src="photos/football-hero.png" alt=""></div>
+
+  <div class="opt e"><div class="lbl"><span class="pick">Option E</span> &middot; Current (thick navy panel)</div><div class="desc">What's on the deck now, for reference.</div><div class="panel"><img src="photos/football-hero.png" alt=""></div></div>
+</div>
+</body></html>
