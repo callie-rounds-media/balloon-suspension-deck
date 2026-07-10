@@ -1,439 +1,55 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>eBay in the Sky</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eBay in the sky</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: { extend: {
+    colors: {
+      background: 'oklch(100% 0 0)',
+      foreground: 'oklch(19% .03 265)',
+      ink: 'oklch(19% .03 265)',
+      'ink-muted': 'oklch(50% .02 260)',
+      primary: 'oklch(55% .19 253)',
+      'muted-foreground': 'oklch(50% .02 260)',
+      hairline: 'oklch(92% .008 255)',
+      surface: 'oklch(97.7% .006 250)',
+      'surface-alt': 'oklch(97.7% .006 250)',
+      'ebay-red': '#E53238', 'ebay-blue': '#0064D2',
+      'ebay-yellow': '#F5AF02', 'ebay-green': '#86B817'
+    },
+    boxShadow: {
+      soft: '0 1px 3px rgba(9,20,48,.04), 0 10px 30px -14px rgba(9,20,48,.12)',
+      lift: '0 30px 70px -34px rgba(9,20,48,.30)'
+    },
+    fontFamily: {
+      sans: ['Sora','Inter','ui-sans-serif','system-ui','sans-serif'],
+      sora: ['Sora','sans-serif'], inter: ['Inter','sans-serif']
+    }
+  } }
+}
+</script>
 <style>
   :root{
-    --bg:#ffffff; --bg-2:#f6f8fc; --line:rgba(9,20,48,.10);
-    --ink:#0d1526; --muted:#5b6577; --accent:#0064D2;
-    --page-glow:rgba(0,100,210,.08); --chip:rgba(9,20,48,.03);
+    --surface-alt:oklch(97.7% .006 250); --surface:oklch(97.7% .006 250);
+    --hairline:oklch(92% .008 255); --ink:oklch(19% .03 265); --ink-muted:oklch(50% .02 260);
     --ebay-red:#E53238; --ebay-blue:#0064D2; --ebay-yellow:#F5AF02; --ebay-green:#86B817;
-    --sky-1:#16265f; --sky-2:#0a1130;
+    --cinematic-bg:radial-gradient(120% 80% at 50% 40%, #16265f 0%, #0a1130 60%, #060a24 100%);
   }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{-webkit-text-size-adjust:100%}
-  body{
-    background:
-      radial-gradient(1200px 600px at 50% -10%, var(--page-glow), transparent 60%),
-      var(--bg);
-    color:var(--ink);
-    font-family:'Sora',system-ui,sans-serif;
-    min-height:100vh;
-    padding:clamp(28px,5vw,72px) clamp(18px,4vw,56px) 96px;
-    -webkit-font-smoothing:antialiased;
-  }
-  .wrap{max-width:1160px;margin:0 auto}
-
-  /* ebay Live wordmark */
-  .ebaylive{display:inline-flex;align-items:center;gap:7px;font-weight:800;line-height:1;text-transform:none;letter-spacing:normal;vertical-align:baseline}
-  .ebaylive .wm{letter-spacing:-.02em;font-size:1em;text-transform:lowercase}
-  .ebaylive .wm b{font-weight:800}
-  .ebaylive .wm b:nth-child(1){color:var(--ebay-red)}
-  .ebaylive .wm b:nth-child(2){color:var(--ebay-blue)}
-  .ebaylive .wm b:nth-child(3){color:var(--ebay-yellow)}
-  .ebaylive .wm b:nth-child(4){color:var(--ebay-green)}
-  .ebaylive .live{
-    background:var(--ebay-red);color:#fff;font-size:.5em;font-weight:700;
-    padding:.28em .55em;border-radius:5px;letter-spacing:.08em;transform:translateY(-.12em);
-  }
-
-  /* header */
-  header{margin-bottom:clamp(20px,3vw,32px)}
-  .eyebrow{
-    font-size:12px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--accent);
-    display:flex;align-items:center;gap:12px;flex-wrap:wrap;
-  }
-  .eyebrow .dots{display:inline-flex;gap:5px}
-  .eyebrow .dots i{width:8px;height:8px;border-radius:50%;display:inline-block}
-  .eyebrow .dots i:nth-child(1){background:var(--ebay-red)}
-  .eyebrow .dots i:nth-child(2){background:var(--ebay-blue)}
-  .eyebrow .dots i:nth-child(3){background:var(--ebay-yellow)}
-  .eyebrow .dots i:nth-child(4){background:var(--ebay-green)}
-  h1{
-    font-size:clamp(40px,7.4vw,86px);font-weight:800;letter-spacing:-.035em;
-    line-height:1.0;margin-top:18px;
-  }
-  h1 .sky{color:var(--accent)}
-  .lede{
-    margin-top:22px;max-width:720px;font-size:clamp(16px,2vw,20px);
-    line-height:1.6;color:var(--muted);font-weight:400;
-  }
-  .lede b{color:var(--ink);font-weight:600}
-
-  /* image stages (hero + close) hold real photos on a cinematic sky */
-  .stage{
-    margin-top:clamp(24px,3.5vw,40px);
-    border-radius:24px;overflow:hidden;
-    background:radial-gradient(900px 500px at 50% 20%, var(--sky-1), var(--sky-2));
-    box-shadow:0 40px 90px -46px rgba(9,20,48,.55);
-    padding:clamp(20px,3vw,40px);text-align:center;
-  }
-  .stage img{width:100%;max-width:860px;height:auto;display:block;margin:0 auto;border-radius:14px}
-  .hero-cap{text-align:center;color:var(--muted);font-size:13px;letter-spacing:.02em;margin-top:14px}
-
-  /* section headers */
-  .section-label{
-    font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);
-    margin:clamp(52px,7vw,92px) 0 14px;display:flex;align-items:center;gap:16px;
-  }
-  .section-label::after{content:"";flex:1;height:1px;background:var(--line)}
-  .section-intro{color:var(--ink);font-size:clamp(17px,2.1vw,22px);line-height:1.55;max-width:820px;margin-bottom:28px;font-weight:300}
-  .section-intro b{font-weight:700}
-
-  /* opportunity: plain-language explainer + how it works */
-  .lead-statement{
-    font-size:clamp(22px,3vw,34px);font-weight:800;letter-spacing:-.025em;line-height:1.18;
-    max-width:860px;margin-bottom:14px;
-  }
-  .lead-statement .sky{color:var(--accent)}
-  .steps{
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:clamp(14px,1.8vw,20px);margin:30px 0 24px;
-  }
-  .step{
-    padding:26px 26px 28px;border-radius:16px;background:var(--bg-2);border:1px solid var(--line);
-    box-shadow:0 24px 60px -42px rgba(9,20,48,.28);
-  }
-  .step .n{
-    display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;
-    background:var(--accent);color:#fff;font-weight:800;font-size:15px;margin-bottom:16px;
-  }
-  .step h4{font-size:17px;font-weight:700;letter-spacing:-.01em;color:var(--ink)}
-  .step p{margin-top:8px;font-size:14px;line-height:1.6;color:var(--muted)}
-  .kicker-line{font-size:clamp(16px,1.9vw,19px);line-height:1.7;color:var(--ink);max-width:820px}
-  .kicker-line b{font-weight:700}
-
-  /* introducing me */
-  .introcard{
-    background:
-      radial-gradient(600px 300px at 8% 0%, rgba(0,100,210,.08), transparent 60%),
-      var(--bg-2);
-    border:1px solid var(--line);border-radius:24px;
-    padding:clamp(30px,4vw,52px);box-shadow:0 30px 80px -46px rgba(9,20,48,.26);
-  }
-  .introcard .hey{font-size:clamp(24px,3.2vw,38px);font-weight:800;letter-spacing:-.03em;line-height:1.1}
-  .introcard p{margin-top:18px;font-size:clamp(16px,1.9vw,19px);line-height:1.72;color:var(--ink);max-width:820px}
-  .introcard p + p{margin-top:14px}
-  .idlink{
-    display:inline-flex;align-items:center;gap:9px;margin-top:26px;padding:12px 20px;border-radius:999px;
-    background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:14px;
-    box-shadow:0 16px 34px -18px rgba(0,100,210,.6);transition:transform .2s;
-  }
-  .idlink:hover{transform:translateY(-2px)}
-  /* intro portrait + crop tool */
-  .introwrap{display:grid;grid-template-columns:minmax(240px,360px) 1fr;gap:clamp(24px,3.2vw,48px);align-items:center}
-  @media(max-width:820px){.introwrap{grid-template-columns:1fr}}
-  .portrait{
-    position:relative;aspect-ratio:4/5;border-radius:20px;overflow:hidden;
-    border:1px solid var(--line);box-shadow:0 30px 70px -40px rgba(9,20,48,.42);background:#e7ecf6;
-  }
-  .portrait img{
-    width:100%;height:100%;display:block;object-fit:cover;object-position:center;
-    transform:translate(var(--tx,0%),var(--ty,0%)) scale(var(--zoom,1.4));
-    transform-origin:center center;
-  }
-  .cropctl{margin-top:14px;padding:16px 16px 14px;border-radius:14px;background:var(--bg-2);border:1px dashed rgba(9,20,48,.2)}
-  .cropctl .row{display:flex;align-items:center;gap:12px;margin:9px 0}
-  .cropctl label{width:78px;font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.02em}
-  .cropctl input[type=range]{flex:1;accent-color:var(--accent)}
-  .cropctl .readout{margin-top:12px;font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:8px;padding:9px 11px}
-  .cropctl .hint{margin-top:9px;font-size:11px;line-height:1.45;color:var(--muted)}
-
-  /* featured proof (Ford) */
-  .fordwrap{
-    border:1px solid var(--line);border-radius:22px;
-    background:
-      radial-gradient(700px 320px at 8% 0%, rgba(0,100,210,.08), transparent 60%),
-      var(--bg-2);
-    padding:clamp(22px,3vw,34px);box-shadow:0 30px 80px -46px rgba(9,20,48,.24);
-  }
-  .fordhead{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:24px}
-  .fordhead .badge{
-    font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
-    color:#fff;background:var(--accent);padding:6px 11px;border-radius:8px;
-  }
-  .fordhead .fordtitle{font-size:clamp(20px,2.4vw,26px);font-weight:800;letter-spacing:-.02em;color:var(--ink)}
-  .fordhead .fordsub{font-size:14px;color:var(--muted)}
-  .phcard{
-    border-radius:16px;min-height:520px;background:var(--bg-2);border:1px dashed rgba(9,20,48,.18);
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding:24px;
-  }
-  .phcard .play{
-    width:60px;height:60px;border-radius:50%;background:rgba(0,100,210,.08);border:1px solid rgba(0,100,210,.22);
-    display:flex;align-items:center;justify-content:center;
-  }
-  .phcard .play::after{content:"";border-left:16px solid var(--accent);border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px}
-  .phcard .todo{
-    font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
-    color:#9a6b00;background:rgba(245,175,2,.14);border:1px solid rgba(245,175,2,.4);padding:6px 11px;border-radius:7px;
-  }
-
-  /* proof grid */
-  .grid{
-    display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
-    gap:clamp(20px,2.4vw,32px);justify-items:center;
-  }
-  .card{width:100%;max-width:360px}
-  .tag{margin-bottom:12px}
-  .tag .name{font-size:14px;font-weight:600;letter-spacing:.01em;color:var(--ink)}
-  .igframe{
-    border-radius:16px;overflow:hidden;background:var(--bg-2);
-    border:1px solid var(--line);box-shadow:0 24px 60px -40px rgba(9,20,48,.30);
-  }
-  .igframe video{display:block;width:100%;height:auto;background:#000}
-
-  /* concepts */
-  .taprow{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 34px}
-  .tap{
-    display:inline-flex;align-items:center;gap:9px;padding:10px 16px;border-radius:999px;
-    background:#fff;border:1px solid var(--line);font-size:13px;font-weight:600;color:var(--ink);
-    box-shadow:0 10px 24px -20px rgba(9,20,48,.4);
-  }
-  .tap .buy{color:#5f8a10;font-weight:800;font-size:11px;letter-spacing:.06em}
-  .menu{
-    display:grid;grid-template-columns:repeat(auto-fill,minmax(288px,1fr));
-    gap:clamp(18px,2.2vw,26px);
-  }
-  .exp{
-    border-radius:18px;overflow:hidden;background:var(--bg-2);
-    border:1px solid var(--line);box-shadow:0 24px 60px -40px rgba(9,20,48,.30);
-    display:flex;flex-direction:column;transition:border-color .2s,transform .2s,box-shadow .2s;
-  }
-  .exp:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 30px 70px -40px rgba(0,100,210,.35)}
-  .exp .shot{
-    position:relative;aspect-ratio:4/3;
-    background-color:#e7ecf6;background-size:cover;background-position:center;
-  }
-  .exp .num{
-    position:absolute;top:12px;left:12px;font-size:11px;font-weight:800;letter-spacing:.14em;
-    color:#fff;background:rgba(9,20,48,.55);border:1px solid rgba(255,255,255,.25);
-    padding:5px 9px;border-radius:8px;
-  }
-  .exp .body{padding:20px 22px 24px}
-  .exp .body h3{font-size:20px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
-  .exp .body .what{margin-top:9px;font-size:14px;line-height:1.55;color:var(--muted)}
-  .exp .body .shop{
-    margin-top:16px;display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;
-    letter-spacing:.06em;text-transform:uppercase;color:#5f8a10;
-  }
-  .exp .body .shop::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ebay-green);box-shadow:0 0 0 4px rgba(134,184,23,.18)}
-
-  /* bench */
-  .bench{display:grid;grid-template-columns:repeat(auto-fill,minmax(224px,1fr));gap:14px}
-  .seg{
-    padding:20px 22px;border-radius:14px;background:var(--bg-2);border:1px solid var(--line);
-    display:flex;flex-direction:column;gap:7px;transition:border-color .2s;
-  }
-  .seg:hover{border-color:var(--accent)}
-  .seg .t{font-size:15px;font-weight:700;color:var(--ink)}
-  .seg .d{font-size:12.5px;line-height:1.5;color:var(--muted)}
-  .seg.finale{border-color:rgba(229,50,56,.45);background:linear-gradient(160deg,rgba(229,50,56,.07),var(--bg-2))}
-  .seg.finale .t{color:var(--ebay-red)}
-
-  /* numbers */
-  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(224px,1fr));gap:clamp(14px,1.8vw,20px)}
-  .stat{
-    padding:26px 26px 24px;border-radius:16px;background:var(--bg-2);border:1px solid var(--line);
-    box-shadow:0 24px 60px -40px rgba(9,20,48,.28);display:flex;flex-direction:column;
-  }
-  .stat .fig{font-size:clamp(26px,3.2vw,38px);font-weight:800;letter-spacing:-.03em;color:var(--ink);line-height:1.05}
-  .stat .fig.known{color:var(--accent)}
-  .stat .lbl{margin-top:12px;font-size:13px;line-height:1.5;color:var(--muted)}
-  .todo{
-    margin-top:16px;align-self:flex-start;font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
-    color:#9a6b00;background:rgba(245,175,2,.14);border:1px solid rgba(245,175,2,.4);
-    padding:5px 9px;border-radius:6px;line-height:1.4;
-  }
-  .crewrow{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:clamp(16px,2vw,24px);margin-top:22px}
-  .linkcard{
-    display:flex;flex-direction:column;justify-content:center;gap:8px;
-    min-height:130px;padding:24px;border-radius:16px;background:var(--bg-2);
-    border:1px solid var(--line);box-shadow:0 24px 60px -40px rgba(9,20,48,.28);
-    text-decoration:none;color:var(--ink);transition:border-color .2s,transform .2s;
-  }
-  .linkcard:hover{border-color:var(--accent);transform:translateY(-3px)}
-  .linkcard .role{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-  .linkcard .handle{font-size:22px;font-weight:800;letter-spacing:-.02em}
-  .linkcard .go{font-size:13px;color:var(--accent);font-weight:600}
-
-  /* close */
-  .close-stage{
-    margin-top:clamp(20px,3vw,32px);border-radius:24px;overflow:hidden;
-    background:radial-gradient(900px 500px at 50% 20%, var(--sky-1), var(--sky-2));
-    box-shadow:0 40px 90px -46px rgba(9,20,48,.55);
-    padding:clamp(30px,4vw,54px);text-align:center;
-  }
-  .close-stage img{width:100%;max-width:820px;height:auto;display:block;margin:0 auto 26px;border-radius:14px}
-  .close-stage .line{font-size:clamp(22px,3.6vw,40px);font-weight:800;letter-spacing:-.03em;line-height:1.12;color:#fff;max-width:760px;margin:0 auto}
-  .close-stage .line .sky{color:#5f9bff}
-  .close-stage .sub{margin-top:18px;color:#aeb7d6;font-size:clamp(14px,1.7vw,17px);max-width:580px;margin-left:auto;margin-right:auto;line-height:1.65}
-
-  .footer{margin-top:56px;color:var(--muted);font-size:13px;text-align:center;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
-  .footer a{color:var(--accent);text-decoration:underline;font-weight:600}
+  html{ scroll-behavior:smooth; }
+  body{ font-family:'Sora','Inter',ui-sans-serif,system-ui,sans-serif; }
+  section[id]{ scroll-margin-top:88px; }
+  .tracked-eyebrow{ text-transform:uppercase; letter-spacing:.2em; font-size:.72rem; font-weight:600; }
+  .cinematic-panel{ background:radial-gradient(120% 80% at 50% 40%, #16265f 0%, #0a1130 60%, #060a24 100%); color:#fff; border-radius:26px; padding:clamp(28px,4vw,56px); }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <div class="eyebrow">
-      <span class="dots"><i></i><i></i><i></i><i></i></span>
-      A flagship spectacle for
-      <span class="ebaylive"><span class="wm"><b>e</b><b>b</b><b>a</b><b>y</b></span><span class="live">LIVE</span></span>
-    </div>
-    <h1>eBay in<br>the <span class="sky">sky.</span></h1>
-    <p class="lede">A full eBay Live campaign suspended at 5,000 feet. A fully branded balloon, a real NFL field flown beneath it, and a card break running on the field.</p>
-
-    <div class="stage">
-      <img src="photos/football-hero.png" alt="eBay Live branded hot air balloon suspending an NFL football field with players and cheerleaders over the clouds at sunset">
-    </div>
-    <p class="hero-cap">A real field in the sky, wrapped in full eBay Live livery.</p>
-  </header>
-
-  <!-- 1. INTRODUCING ME -->
-  <div class="section-label">Introducing me</div>
-  <div class="introcard">
-    <div class="introwrap">
-      <div class="portrait-col">
-        <div class="portrait"><img id="portraitImg" src="photos/callie-portrait.jpg" alt="Callie beside a hot air balloon at dawn, rig on"></div>
-        <div class="cropctl">
-          <div class="row"><label>Zoom</label><input type="range" id="cZoom" min="1" max="3" step="0.01" value="1.4"></div>
-          <div class="row"><label>Left / right</label><input type="range" id="cX" min="-100" max="100" step="1" value="0"></div>
-          <div class="row"><label>Up / down</label><input type="range" id="cY" min="-100" max="100" step="1" value="0"></div>
-          <div class="readout" id="cReadout">transform: translate(0%, 0%) scale(1.40)</div>
-          <div class="hint">Zoom in first, then slide. The pan range grows the more you zoom. Frame it, then read me the line above and I'll bake it in.</div>
-        </div>
-      </div>
-      <div class="introtext">
-        <p class="hey">Hi, I'm Callie.</p>
-        <p>I'm an extreme sport content creator with an audience of 400K who follow me for exactly this kind of thing, the stunts most people only see once and never forget.</p>
-        <p>I've spent the past few months in Brazil building the contacts to actually put stunts like this on, and I now have the tools, the crew, and the resources to make it real. I'm connected with the team behind some of the highest end aerial suspension stunts in the world, the same crew that flew every build you're about to see.</p>
-        <a class="idlink" href="https://www.instagram.com/callie.rounds" target="_blank" rel="noopener">See my work, @callie.rounds &rarr;</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- 2. THE OPPORTUNITY -->
-  <div class="section-label">The opportunity</div>
-  <p class="lead-statement">A real stage, flown under a fully branded balloon, <span class="sky">built for eBay Live.</span></p>
-  <p class="section-intro">This has been pulled off for major brands already. It has <b>never been done for a marketplace like eBay.</b> That gap is the opening.</p>
-
-  <!-- 3. THE PROOF -->
-  <div class="section-label">The proof</div>
-  <p class="section-intro">None of this is a render. It has been rigged, flown, and filmed for real. <b>Start with the biggest one.</b></p>
-
-  <div class="fordwrap">
-    <div class="fordhead">
-      <span class="badge">Featured</span>
-      <span class="fordtitle">The Ford commercial</span>
-      <span class="fordsub">A major brand, this exact crew, flown for real.</span>
-    </div>
-    <div class="grid">
-      <div class="card">
-        <div class="tag"><span class="name">Ford, suspended and flown</span></div>
-        <div class="igframe"><video controls preload="none" playsinline poster="videos/ford-brazil-poster.jpg" src="videos/ford-brazil.mp4"></video></div>
-      </div>
-    </div>
-  </div>
-
-  <p class="section-intro" style="margin-top:40px">And Ford is not the only brand that has trusted this crew in the sky:</p>
-  <div class="grid">
-    <div class="card">
-      <div class="tag"><span class="name">Stake, a match played in the sky</span></div>
-      <div class="igframe"><video controls preload="none" playsinline poster="videos/stake-balloon-poster.jpg" src="videos/stake-balloon.mp4"></video></div>
-    </div>
-    <div class="card">
-      <div class="tag"><span class="name">Aviator by Spribe, a custom rig in the sky</span></div>
-      <div class="igframe"><video controls preload="none" playsinline poster="videos/aviator-ontop-poster.jpg" src="videos/aviator-ontop.mp4"></video></div>
-    </div>
-  </div>
-
-  <!-- 4. THE CONCEPT -->
-  <div class="section-label">The concept</div>
-  <p class="lead-statement">Football, played in the <span class="sky">sky.</span> A card break, live on eBay.</p>
-  <p class="section-intro">A real NFL field, flown on a stage beneath the balloon in full eBay Live livery. Players, cheerleaders, a full game with nothing below but clouds. Woven through it, a <b>Break'n Bad card break that runs on eBay Live,</b> where every play sets up the next pull.</p>
-  <div class="bench">
-    <div class="seg"><span class="t">The spectacle</span><span class="d">A real NFL field flown on a stage under the balloon. Players, cheerleaders, goalposts, open sky beneath it. The thing nobody can scroll past.</span></div>
-    <div class="seg"><span class="t">The break</span><span class="d">Break'n Bad rips sealed packs live at altitude. Sports cards, real pulls, the exact format that already drives eBay Live.</span></div>
-    <div class="seg finale"><span class="t">Built for eBay Live</span><span class="d">The card pulls go to auction on eBay Live, real bids in real time. Streaming the show itself live from the sky is the goal every piece is built toward.</span></div>
-  </div>
-
-  <!-- 5. THE NUMBERS -->
-  <div class="section-label">The numbers</div>
-  <p class="section-intro">The momentum is real and the reach is proven. The figures below marked <b>TODO</b> need a source locked before this goes out. No guessed numbers ship.</p>
-  <div class="stats">
-    <div class="stat">
-      <div class="fig known">400K</div>
-      <div class="lbl">Followers on @callie.rounds, the audience that carries the launch and the behind the scenes.</div>
-    </div>
-    <div class="stat">
-      <div class="fig">Live commerce</div>
-      <div class="lbl">Livestream shopping is one of the fastest growing formats in retail, the exact behaviour eBay Live is built for.</div>
-      <span class="todo">TODO: verify market size and growth rate, add source</span>
-    </div>
-    <div class="stat">
-      <div class="fig">Trading cards</div>
-      <div class="lbl">The trading card and collectibles market is in a documented boom, and eBay is a primary marketplace for it.</div>
-      <span class="todo">TODO: verify market value and eBay share, add source</span>
-    </div>
-    <div class="stat">
-      <div class="fig">Crew record</div>
-      <div class="lbl">A proven aerial suspension crew with a track record of rigged and flown builds like the proof above.</div>
-      <span class="todo">TODO: operator, X suspensions completed (Callie to supply)</span>
-    </div>
-  </div>
-
-  <div class="crewrow">
-    <a class="linkcard" href="https://www.instagram.com/arquentebalonismo" target="_blank" rel="noopener">
-      <span class="role">Aerial suspension operator</span>
-      <span class="handle">@arquentebalonismo</span>
-      <span class="go">View on Instagram &rarr;</span>
-    </a>
-    <a class="linkcard" href="https://www.instagram.com/abu_fpv_" target="_blank" rel="noopener">
-      <span class="role">FPV cinematography</span>
-      <span class="handle">@abu_fpv_</span>
-      <span class="go">View on Instagram &rarr;</span>
-    </a>
-  </div>
-
-  <!-- 6. THE CLOSE -->
-  <div class="section-label">The close</div>
-  <div class="close-stage">
-    <img src="photos/live-selling.png" alt="eBay Live balloon suspending a live selling stage over the clouds at golden hour">
-    <p class="line">Let's build the one <span class="sky">nobody's ever seen.</span></p>
-    <p class="sub">One balloon, a football field in the clouds, and a card break that sells on eBay Live. Everything it takes already exists. All that's left is deciding to fly it.</p>
-  </div>
-
-  <div class="footer">
-    <span>Prepared for</span>
-    <span class="ebaylive"><span class="wm"><b>e</b><b>b</b><b>a</b><b>y</b></span><span class="live">LIVE</span></span>
-    <span>&middot;</span>
-    <a href="https://www.instagram.com/callie.rounds" target="_blank" rel="noopener">@callie.rounds</a>
-  </div>
-</div>
-
-<script>
-  (function(){
-    var img=document.getElementById('portraitImg');
-    var z=document.getElementById('cZoom'),x=document.getElementById('cX'),y=document.getElementById('cY'),r=document.getElementById('cReadout');
-    if(!img||!z)return;
-    function upd(){
-      var zoom=parseFloat(z.value);
-      var reach=(zoom-1)*50;                 // max pan % before an edge shows
-      var tx=(-x.value/100)*reach;           // slide right -> reveal the right side
-      var ty=(-y.value/100)*reach;           // slide right -> reveal the lower part
-      img.style.setProperty('--tx',tx.toFixed(1)+'%');
-      img.style.setProperty('--ty',ty.toFixed(1)+'%');
-      img.style.setProperty('--zoom',zoom);
-      r.textContent='transform: translate('+tx.toFixed(1)+'%, '+ty.toFixed(1)+'%) scale('+zoom.toFixed(2)+')';
-    }
-    [z,x,y].forEach(function(el){el.addEventListener('input',upd)});
-    upd();
-  })();
-</script>
+<main class="min-h-screen bg-background text-ink antialiased"><header class="fixed inset-x-0 top-0 z-40 border-b border-hairline/60 bg-background/70 backdrop-blur-md"><div class="mx-auto flex max-w-[1240px] items-center justify-between px-6 py-4 md:px-10"><div class="flex items-center gap-3"><span class="inline-flex items-baseline gap-1.5 font-extrabold lowercase tracking-tight text-[1.05em] " aria-label="ebay Live"><span class="inline-flex items-baseline"><span style="color:var(--ebay-red)">e</span><span style="color:var(--ebay-blue)">b</span><span style="color:var(--ebay-yellow)">a</span><span style="color:var(--ebay-green)">y</span></span><span class="translate-y-[-0.08em] rounded-md px-1.5 py-0.5 text-[0.55em] font-bold uppercase leading-none tracking-[0.14em] text-white" style="background:var(--ebay-red)">Live</span></span><span class="hidden text-xs font-medium text-ink-muted sm:inline">× @callie.rounds</span></div><a href="#close" class="rounded-full px-4 py-2 text-xs font-semibold text-white transition-transform hover:-translate-y-0.5" style="background:var(--ebay-blue)">The pitch</a></div></header><section class="relative overflow-hidden pt-32 md:pt-40"><div class="mx-auto max-w-[1240px] px-6 md:px-10"><div class="reveal reveal-in" style="transition-delay: 0ms;"><div class="flex flex-wrap items-center gap-3 text-sm text-ink-muted"><span class="inline-flex items-center gap-1.5 " aria-hidden="true"><span class="h-1.5 w-1.5 rounded-full" style="background:var(--ebay-red)"></span><span class="h-1.5 w-1.5 rounded-full" style="background:var(--ebay-blue)"></span><span class="h-1.5 w-1.5 rounded-full" style="background:var(--ebay-yellow)"></span><span class="h-1.5 w-1.5 rounded-full" style="background:var(--ebay-green)"></span></span><span>A flagship spectacle for <span class="inline-flex items-baseline gap-1.5 font-extrabold lowercase tracking-tight text-[1.05em] " aria-label="ebay Live"><span class="inline-flex items-baseline"><span style="color:var(--ebay-red)">e</span><span style="color:var(--ebay-blue)">b</span><span style="color:var(--ebay-yellow)">a</span><span style="color:var(--ebay-green)">y</span></span><span class="translate-y-[-0.08em] rounded-md px-1.5 py-0.5 text-[0.55em] font-bold uppercase leading-none tracking-[0.14em] text-white" style="background:var(--ebay-red)">Live</span></span></span></div></div><div class="reveal reveal-in" style="transition-delay: 120ms;"><h1 class="mt-8 max-w-[16ch] text-[clamp(3rem,9vw,8.5rem)] font-extrabold leading-[0.95] tracking-[-0.035em] text-ink">eBay in the<!-- --> <span style="color:var(--ebay-blue)">sky.</span></h1></div><div class="reveal reveal-in" style="transition-delay: 220ms;"><p class="mt-8 max-w-[62ch] text-lg leading-relaxed text-ink-muted md:text-xl">A full eBay Live campaign suspended at 5,000 feet. A real NFL field flown beneath a branded balloon, a live card break running on it, and a whole sky watching.</p></div></div><div class="mx-auto mt-16 max-w-[1240px] px-6 md:mt-24 md:px-10"><div class="reveal reveal-in" style="transition-delay: 120ms;"><div class="rounded-3xl p-6 md:p-14 cinematic-panel shadow-lift"><figure class=""><div class="relative w-full overflow-hidden rounded-2xl aspect-[16/9] border border-white/10 bg-white/5 text-white/70"><img src="photos/football-hero.png" alt="eBay Live balloon suspending an NFL field over the clouds at sunset" class="absolute inset-0 h-full w-full object-cover"><div aria-hidden="true" class="pointer-events-none absolute inset-0 opacity-[0.06]" style="background-image:linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px);background-size:24px 24px"></div></div><figcaption class="mt-4 text-sm text-white/70">A real field in the sky, wrapped in full eBay Live livery.</figcaption></figure></div></div></div></section><section class="mx-auto max-w-[1240px] px-6 py-32 md:px-10 md:py-40"><div class="grid gap-12 md:grid-cols-12 md:gap-16"><div class="reveal md:col-span-5"><figure class=""><div class="relative w-full overflow-hidden rounded-2xl aspect-[4/5] border border-hairline bg-surface-alt text-ink-muted shadow-soft"><img src="photos/callie-portrait.jpg" alt="Callie on location" class="absolute inset-0 h-full w-full object-cover"><div aria-hidden="true" class="pointer-events-none absolute inset-0 opacity-[0.06]" style="background-image:linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px);background-size:24px 24px"></div></div></figure></div><div class="md:col-span-7 md:pt-6"><div class="reveal "><div class="flex items-center gap-3"><span class="h-px w-8 bg-ink/30"></span><span class="tracked-eyebrow text-ink-muted">Introducing me</span></div></div><div class="reveal "><h2 class="mt-6 text-[clamp(2.25rem,5vw,4.25rem)] font-bold leading-[1.02] tracking-[-0.025em]">Hi, I'm Callie.</h2></div><div class="reveal "><p class="mt-8 max-w-[58ch] text-lg leading-relaxed text-ink-muted">I'm an extreme sport content creator with an audience of 400K who follow me for exactly this kind of thing, the stunts most people only see once and never forget.</p></div><div class="reveal "><p class="mt-6 max-w-[58ch] text-lg leading-relaxed text-ink-muted">I've spent the past few months in Brazil building the contacts to actually put stunts like this on, and I now have the tools, the crew, and the resources to make it real. I'm connected with the team behind some of the highest end aerial suspension stunts in the world, the same crew that flew every build you're about to see.</p></div><div class="reveal "><a href="https://instagram.com/callie.rounds" target="_blank" rel="noreferrer" class="mt-10 inline-flex items-center gap-2 rounded-full border border-ink/15 px-5 py-3 text-sm font-semibold text-ink transition-all hover:border-ink/40 hover:-translate-y-0.5"><span class="h-2 w-2 rounded-full" style="background:var(--ebay-blue)"></span>See my work, @callie.rounds<span aria-hidden="true">→</span></a></div></div></div></section><section class="border-y border-hairline" style="background:var(--surface-alt)"><div class="mx-auto max-w-[1240px] px-6 py-32 md:px-10 md:py-40"><div class="reveal "><div class="flex items-center gap-3"><span class="h-px w-8 bg-ink/30"></span><span class="tracked-eyebrow text-ink-muted">The opportunity</span></div></div><div class="reveal "><h2 class="mt-8 max-w-[22ch] text-[clamp(2.25rem,6vw,5.5rem)] font-bold leading-[1.02] tracking-[-0.03em]">A real stage, flown under a fully branded balloon, built for<!-- --> <span class="inline-flex items-baseline gap-1.5 font-extrabold lowercase tracking-tight text-[1.25em] " aria-label="ebay Live"><span class="inline-flex items-baseline"><span style="color:var(--ebay-red)">e</span><span style="color:var(--ebay-blue)">b</span><span style="color:var(--ebay-yellow)">a</span><span style="color:var(--ebay-green)">y</span></span><span class="translate-y-[-0.08em] rounded-md px-1.5 py-0.5 text-[0.55em] font-bold uppercase leading-none tracking-[0.14em] text-white" style="background:var(--ebay-red)">Live</span></span>.</h2></div><div class="reveal "><p class="mt-10 max-w-[60ch] text-lg leading-relaxed text-ink-muted md:text-xl">This has been pulled off for major brands already. It has never been done for a marketplace like eBay. That gap is the opening.</p></div></div></section><section class="mx-auto max-w-[1240px] px-6 py-32 md:px-10 md:py-40"><div class="reveal "><div class="flex items-center gap-3"><span class="h-px w-8 bg-ink/30"></span><span class="tracked-eyebrow text-ink-muted">The proof</span></div></div><div class="reveal "><p class="mt-8 max-w-[52ch] text-2xl font-medium leading-snug text-ink md:text-3xl">None of this is a render. It has been rigged, flown, and filmed for real.</p></div><div class="mt-16 grid gap-8 md:grid-cols-12"><div class="reveal md:col-span-6"><div class="group flex flex-col gap-4"><div class="relative w-full overflow-hidden rounded-2xl border border-white/10 aspect-[9/16] shadow-lift" style="background:var(--cinematic-bg)"><video controls preload="none" playsinline poster="videos/ford-brazil-poster.jpg" src="videos/ford-brazil.mp4" class="absolute inset-0 h-full w-full object-cover z-20"></video><div class="absolute inset-0 flex items-center justify-center"><button type="button" aria-label="Play The Ford commercial" class="flex h-16 w-16 items-center justify-center rounded-full bg-white/95 text-ink shadow-lift backdrop-blur transition-transform duration-300 group-hover:scale-105"><svg width="18" height="20" viewBox="0 0 18 20" fill="none" aria-hidden="true"><path d="M17 8.27a2 2 0 0 1 0 3.46L4 19.2A2 2 0 0 1 1 17.46V2.54A2 2 0 0 1 4 .8L17 8.27Z" fill="currentColor"></path></svg></button></div><div class="absolute left-4 top-4 rounded-full bg-white/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-white/80 backdrop-blur">Video placeholder</div></div><div><h4 class="text-base font-semibold text-ink">The Ford commercial</h4><p class="mt-1 text-sm text-ink-muted">A major brand, this exact crew, flown for real.</p></div></div></div><div class="grid gap-8 md:col-span-6 md:grid-cols-2"><div class="reveal "><div class="group flex flex-col gap-4"><div class="relative w-full overflow-hidden rounded-2xl border border-white/10 aspect-[9/16] shadow-soft" style="background:var(--cinematic-bg)"><video controls preload="none" playsinline poster="videos/stake-balloon-poster.jpg" src="videos/stake-balloon.mp4" class="absolute inset-0 h-full w-full object-cover z-20"></video><div class="absolute inset-0 flex items-center justify-center"><button type="button" aria-label="Play Stake, a match played in the sky" class="flex h-16 w-16 items-center justify-center rounded-full bg-white/95 text-ink shadow-lift backdrop-blur transition-transform duration-300 group-hover:scale-105"><svg width="18" height="20" viewBox="0 0 18 20" fill="none" aria-hidden="true"><path d="M17 8.27a2 2 0 0 1 0 3.46L4 19.2A2 2 0 0 1 1 17.46V2.54A2 2 0 0 1 4 .8L17 8.27Z" fill="currentColor"></path></svg></button></div><div class="absolute left-4 top-4 rounded-full bg-white/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-white/80 backdrop-blur">Video placeholder</div></div><div><h4 class="text-base font-semibold text-ink">Stake, a match played in the sky</h4></div></div></div><div class="reveal "><div class="group flex flex-col gap-4"><div class="relative w-full overflow-hidden rounded-2xl border border-white/10 aspect-[9/16] shadow-soft" style="background:var(--cinematic-bg)"><video controls preload="none" playsinline poster="videos/aviator-ontop-poster.jpg" src="videos/aviator-ontop.mp4" class="absolute inset-0 h-full w-full object-cover z-20"></video><div class="absolute inset-0 flex items-center justify-center"><button type="button" aria-label="Play Aviator by Spribe, a custom rig in the sky" class="flex h-16 w-16 items-center justify-center rounded-full bg-white/95 text-ink shadow-lift backdrop-blur transition-transform duration-300 group-hover:scale-105"><svg width="18" height="20" viewBox="0 0 18 20" fill="none" aria-hidden="true"><path d="M17 8.27a2 2 0 0 1 0 3.46L4 19.2A2 2 0 0 1 1 17.46V2.54A2 2 0 0 1 4 .8L17 8.27Z" fill="currentColor"></path></svg></button></div><div class="absolute left-4 top-4 rounded-full bg-white/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-white/80 backdrop-blur">Video placeholder</div></div><div><h4 class="text-base font-semibold text-ink">Aviator by Spribe, a custom rig in the sky</h4></div></div></div></div></div></section><section class="border-y border-hairline" style="background:var(--surface-alt)"><div class="mx-auto max-w-[1240px] px-6 py-32 md:px-10 md:py-40"><div class="reveal "><div class="flex items-center gap-3"><span class="h-px w-8 bg-ink/30"></span><span class="tracked-eyebrow text-ink-muted">The concept</span></div></div><div class="reveal "><h2 class="mt-8 max-w-[22ch] text-[clamp(2.25rem,6vw,5.5rem)] font-bold leading-[1.02] tracking-[-0.03em]">Football, played in the<!-- --> <span style="color:var(--ebay-blue)">sky.</span> A card break, live on eBay.</h2></div><div class="reveal "><p class="mt-10 max-w-[62ch] text-lg leading-relaxed text-ink-muted md:text-xl">A real NFL field, flown on a stage beneath the balloon in full eBay Live livery. Players, cheerleaders, a full game with nothing below but clouds. Woven through it, a Break'n Bad card break streaming live on eBay, where every play sets up the next pull.</p></div><div class="mt-16 grid gap-6 md:grid-cols-3"><div class="reveal "><div class="group relative flex h-full flex-col overflow-hidden rounded-2xl border p-8 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift border-hairline bg-surface"><div class="absolute inset-x-0 top-0 h-[3px]" style="background:var(--ebay-blue)"></div><div class="flex items-center gap-2"><span class="h-2 w-2 rounded-full" style="background:var(--ebay-blue)"></span><h3 class="text-sm font-semibold uppercase tracking-[0.16em] text-ink">The spectacle</h3></div><p class="mt-6 text-base leading-relaxed text-ink-muted">A real NFL field flown on a stage under the balloon. Players, cheerleaders, goalposts, open sky beneath it. The thing nobody can scroll past.</p></div></div><div class="reveal "><div class="group relative flex h-full flex-col overflow-hidden rounded-2xl border p-8 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift border-hairline bg-surface"><div class="absolute inset-x-0 top-0 h-[3px]" style="background:var(--ebay-yellow)"></div><div class="flex items-center gap-2"><span class="h-2 w-2 rounded-full" style="background:var(--ebay-yellow)"></span><h3 class="text-sm font-semibold uppercase tracking-[0.16em] text-ink">The break</h3></div><p class="mt-6 text-base leading-relaxed text-ink-muted">Break'n Bad rips sealed packs live at altitude. Sports cards, real pulls, the exact format that already drives eBay Live.</p></div></div><div class="reveal "><div class="group relative flex h-full flex-col overflow-hidden rounded-2xl border p-8 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift border-transparent bg-surface" style="background:linear-gradient(180deg, #fff 0%, color-mix(in oklab, var(--ebay-red) 6%, #fff) 100%);box-shadow:0 1px 2px rgba(229,50,56,0.06), 0 24px 60px rgba(229,50,56,0.12)"><div class="absolute inset-x-0 top-0 h-[3px]" style="background:var(--ebay-red)"></div><div class="flex items-center gap-2"><span class="h-2 w-2 rounded-full" style="background:var(--ebay-red)"></span><h3 class="text-sm font-semibold uppercase tracking-[0.16em] text-ink">Live on eBay</h3></div><p class="mt-6 text-base leading-relaxed text-ink-muted">The whole thing streams on eBay Live, bids climbing in real time. The game pulls the crowd, the break sells the room.</p></div></div></div></div></section><section class="mx-auto max-w-[1240px] px-6 py-32 md:px-10 md:py-40"><div class="reveal "><div class="flex items-center gap-3"><span class="h-px w-8 bg-ink/30"></span><span class="tracked-eyebrow text-ink-muted">The numbers</span></div></div><div class="mt-14 grid gap-6 md:grid-cols-4"><div class="reveal "><div class="flex h-full flex-col justify-between rounded-2xl border border-hairline bg-surface p-8 shadow-soft"><div class="text-6xl font-extrabold tracking-[-0.03em] md:text-7xl" style="color:var(--ebay-blue)">400K</div><p class="mt-8 text-sm leading-relaxed text-ink-muted">Followers on @callie.rounds, the audience that carries the launch.</p></div></div><div class="reveal "><div class="flex h-full flex-col justify-between rounded-2xl border border-hairline bg-surface p-8 shadow-soft"><div class="text-6xl font-extrabold tracking-[-0.03em] text-ink/25 md:text-7xl">,</div><div class="mt-8"><p class="text-sm font-semibold text-ink">Live commerce</p><span class="mt-3 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[0.62rem] font-bold uppercase tracking-[0.14em]" style="background:color-mix(in oklab, var(--ebay-yellow) 20%, white);color:#7a5500"><span class="h-1.5 w-1.5 rounded-full" style="background:var(--ebay-yellow)"></span>TODO: source needed</span></div></div></div><div class="reveal "><div class="flex h-full flex-col justify-between rounded-2xl border border-hairline bg-surface p-8 shadow-soft"><div class="text-6xl font-extrabold tracking-[-0.03em] text-ink/25 md:text-7xl">,</div><div class="mt-8"><p class="text-sm font-semibold text-ink">Trading cards</p><span class="mt-3 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[0.62rem] font-bold uppercase tracking-[0.14em]" style="background:color-mix(in oklab, var(--ebay-yellow) 20%, white);color:#7a5500"><span class="h-1.5 w-1.5 rounded-full" style="background:var(--ebay-yellow)"></span>TODO: source needed</span></div></div></div><div class="reveal "><div class="flex h-full flex-col justify-between rounded-2xl border border-hairline bg-surface p-8 shadow-soft"><div class="text-6xl font-extrabold tracking-[-0.03em] text-ink/25 md:text-7xl">,</div><div class="mt-8"><p class="text-sm font-semibold text-ink">Crew record</p><span class="mt-3 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[0.62rem] font-bold uppercase tracking-[0.14em]" style="background:color-mix(in oklab, var(--ebay-yellow) 20%, white);color:#7a5500"><span class="h-1.5 w-1.5 rounded-full" style="background:var(--ebay-yellow)"></span>TODO: source needed</span></div></div></div></div></section><section id="close" class="cinematic-panel"><div class="mx-auto max-w-[1240px] px-6 py-32 md:px-10 md:py-40"><div class="reveal "><figure class=""><div class="relative w-full overflow-hidden rounded-2xl aspect-[16/9] border border-white/10 bg-white/5 text-white/70"><img src="photos/football-hero.png" alt="The full spectacle in flight" class="absolute inset-0 h-full w-full object-cover"><div aria-hidden="true" class="pointer-events-none absolute inset-0 opacity-[0.06]" style="background-image:linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px);background-size:24px 24px"></div></div></figure></div><div class="reveal "><h2 class="mt-16 max-w-[18ch] text-[clamp(2.5rem,7vw,6.75rem)] font-extrabold leading-[0.98] tracking-[-0.035em] text-white">Let's build the one<!-- --> <span style="color:var(--ebay-blue-soft)">nobody's ever seen.</span></h2></div><div class="reveal "><p class="mt-10 max-w-[60ch] text-lg leading-relaxed text-white/70 md:text-xl">One balloon, a football field in the clouds, and a card break the whole internet can buy from live. Everything it takes already exists. All that's left is deciding to fly it.</p></div><div class="reveal "><div class="mt-20 flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-white/10 pt-8 text-sm text-white/60"><span>Prepared for</span><span class="inline-flex items-baseline gap-1.5 font-extrabold lowercase tracking-tight text-[1.05em] " aria-label="ebay Live"><span class="inline-flex items-baseline"><span style="color:var(--ebay-red)">e</span><span style="color:var(--ebay-blue)">b</span><span style="color:var(--ebay-yellow)">a</span><span style="color:var(--ebay-green)">y</span></span><span class="translate-y-[-0.08em] rounded-md px-1.5 py-0.5 text-[0.55em] font-bold uppercase leading-none tracking-[0.14em] text-white" style="background:var(--ebay-red)">Live</span></span><span class="text-white/40">·</span><span>@callie.rounds</span></div></div></div></section></main>
 </body>
 </html>
