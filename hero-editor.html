@@ -1,0 +1,90 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hero editor</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--line:#d7dde5;--muted:#5b6472;--blue:#0064D2}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Sora',system-ui,sans-serif;background:#eef1f5;color:#1a2230;padding:24px}
+  .top{max-width:1500px;margin:0 auto 16px}
+  h1{font-size:22px;font-weight:800;letter-spacing:-.02em}
+  .sub{color:var(--muted);font-size:14px;margin-top:4px}
+  .app{max-width:1500px;margin:0 auto;display:grid;grid-template-columns:1fr 320px;gap:22px;align-items:start}
+  .stage{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 30px 70px -38px rgba(9,20,48,.4);background:#0a1130;aspect-ratio:16/9}
+  .bg{position:absolute;inset:0;background-image:url('photos/football-hero.png');background-repeat:no-repeat}
+  .ins{position:absolute;overflow:hidden;cursor:grab;touch-action:none}
+  .ins:active{cursor:grabbing}
+  .ins img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px}
+  .grp{margin-bottom:20px}
+  .grp h3{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+  label{display:block;font-size:13px;font-weight:600;margin:12px 0 5px;display:flex;justify-content:space-between}
+  label span{color:var(--muted);font-weight:600}
+  input[type=range]{width:100%}
+  select{width:100%;padding:7px 9px;border:1px solid var(--line);border-radius:9px;font-family:inherit;font-size:13px;margin-top:2px}
+  .row{display:flex;gap:8px}
+  .btn{flex:1;padding:9px;border:1px solid var(--line);border-radius:10px;background:#f6f8fb;font-family:inherit;font-weight:700;font-size:12.5px;cursor:pointer}
+  .btn.p{background:var(--blue);color:#fff;border-color:var(--blue)}
+  .hint{font-size:12px;color:var(--muted);line-height:1.45;margin-top:6px}
+  .read{font-size:11.5px;color:var(--muted);background:#f4f6f9;border-radius:9px;padding:9px;margin-top:10px;font-family:ui-monospace,monospace;white-space:pre-wrap;word-break:break-word}
+</style></head><body>
+<div class="top"><h1>Hero editor</h1><p class="sub">Drag the two shots to move them. Use the sliders to zoom / slide the eBay Live background and to size and feather each inset. When it looks right, hit “Copy the recipe” and paste it to me, I’ll build it into the live deck exactly.</p></div>
+<div class="app">
+  <div class="stage" id="stage">
+    <div class="bg" id="bg"></div>
+    <div class="ins" id="insA"><img id="imgA" src="photos/set/crop-cards.png"></div>
+    <div class="ins" id="insB"><img id="imgB" src="photos/set/crop-cheer.png"></div>
+  </div>
+  <div class="panel">
+    <div class="grp"><h3>eBay Live background</h3>
+      <label>Zoom <span id="vz">118%</span></label><input id="z" type="range" min="100" max="240" value="118">
+      <label>Slide left / right <span id="vx">64</span></label><input id="x" type="range" min="0" max="100" value="64">
+      <label>Slide up / down <span id="vy">46</span></label><input id="y" type="range" min="0" max="100" value="46">
+    </div>
+    <div class="grp"><h3>Inset 1 (drag me)</h3>
+      <select id="selA"><option value="photos/set/crop-cards.png">Cards (cropped, no balloon)</option><option value="photos/set/crop-cheer.png">Cheer (cropped)</option><option value="photos/set/02-pull-a.png">The pull</option><option value="photos/set/01-cardbreak-a.png">Card break (player)</option><option value="photos/set/10-action-a.png">QB action</option></select>
+      <label>Size <span id="vaS">27%</span></label><input id="aS" type="range" min="12" max="52" value="27">
+      <label>Shape (round → square) <span id="vaR">18px</span></label><input id="aR" type="range" min="0" max="50" value="18">
+      <label>Feather / bleed <span id="vaF">40</span></label><input id="aF" type="range" min="0" max="60" value="40">
+    </div>
+    <div class="grp"><h3>Inset 2 (drag me)</h3>
+      <select id="selB"><option value="photos/set/crop-cheer.png">Cheer (cropped)</option><option value="photos/set/crop-cards.png">Cards (cropped, no balloon)</option><option value="photos/set/02-pull-a.png">The pull</option><option value="photos/set/01-cardbreak-a.png">Card break (player)</option><option value="photos/set/10-action-a.png">QB action</option></select>
+      <label>Size <span id="vbS">27%</span></label><input id="bS" type="range" min="12" max="52" value="27">
+      <label>Shape (round → square) <span id="vbR">18px</span></label><input id="bR" type="range" min="0" max="50" value="18">
+      <label>Feather / bleed <span id="vbF">40</span></label><input id="bF" type="range" min="0" max="60" value="40">
+    </div>
+    <div class="row"><button class="btn" id="reset">Reset</button><button class="btn p" id="copy">Copy the recipe</button></div>
+    <div class="hint">Tip: to put the field on the left, turn Zoom up a bit, then slide the background right until the field sits where you want, and the two shots have open sky on the right.</div>
+    <div class="read" id="read"></div>
+  </div>
+</div>
+<script>
+  const $=id=>document.getElementById(id);
+  const stage=$('stage'),bg=$('bg');
+  const A={el:$('insA'),img:$('imgA'),x:70,y:6},B={el:$('insB'),img:$('imgB'),x:70,y:34};
+  function feather(pct){const solid=Math.max(8,42-pct*0.55),edge=Math.min(99,60+pct*0.7);return `radial-gradient(ellipse 98% 98% at 50% 50%, #000 ${solid}%, transparent ${edge}%)`;}
+  function drawBg(){bg.style.backgroundSize=$('z').value+'%';bg.style.backgroundPosition=$('x').value+'% '+$('y').value+'%';
+    $('vz').textContent=$('z').value+'%';$('vx').textContent=$('x').value;$('vy').textContent=$('y').value;}
+  function drawIns(o,S,R,F){o.el.style.width=$(S).value+'%';o.el.style.aspectRatio='16/10';o.el.style.left=o.x+'%';o.el.style.top=o.y+'%';
+    o.el.style.borderRadius=$(R).value+'px';const f=feather($(F).value);o.el.style.webkitMaskImage=f;o.el.style.maskImage=f;
+    $('v'+S).textContent=$(S).value+'%';$('v'+R).textContent=$(R).value+'px';$('v'+F).textContent=$(F).value;}
+  function drawAll(){drawBg();drawIns(A,'aS','aR','aF');drawIns(B,'bS','bR','bF');readout();}
+  function readout(){$('read').textContent=
+`BG: zoom ${$('z').value}%, pos ${$('x').value}% ${$('y').value}%
+Inset1: ${$('selA').value.split('/').pop()} · size ${$('aS').value}% · pos ${Math.round(A.x)}% ${Math.round(A.y)}% · radius ${$('aR').value}px · feather ${$('aF').value}
+Inset2: ${$('selB').value.split('/').pop()} · size ${$('bS').value}% · pos ${Math.round(B.x)}% ${Math.round(B.y)}% · radius ${$('bR').value}px · feather ${$('bF').value}`;}
+  // dragging
+  function drag(o){o.el.addEventListener('pointerdown',e=>{e.preventDefault();o.el.setPointerCapture(e.pointerId);
+    const r=stage.getBoundingClientRect(),sx=e.clientX,sy=e.clientY,ox=o.x,oy=o.y;
+    const mv=ev=>{o.x=Math.max(-6,Math.min(96,ox+(ev.clientX-sx)/r.width*100));o.y=Math.max(-6,Math.min(96,oy+(ev.clientY-sy)/r.height*100));
+      o.el.style.left=o.x+'%';o.el.style.top=o.y+'%';readout();};
+    const up=()=>{document.removeEventListener('pointermove',mv);document.removeEventListener('pointerup',up);};
+    document.addEventListener('pointermove',mv);document.addEventListener('pointerup',up);});}
+  drag(A);drag(B);
+  ['z','x','y','aS','aR','aF','bS','bR','bF'].forEach(id=>$(id).addEventListener('input',drawAll));
+  $('selA').addEventListener('change',()=>{A.img.src=$('selA').value;readout();});
+  $('selB').addEventListener('change',()=>{B.img.src=$('selB').value;readout();});
+  $('reset').addEventListener('click',()=>{location.reload();});
+  $('copy').addEventListener('click',()=>{navigator.clipboard&&navigator.clipboard.writeText($('read').textContent);$('copy').textContent='Copied ✓';setTimeout(()=>$('copy').textContent='Copy the recipe',1400);});
+  drawAll();
+</script>
+</body></html>
