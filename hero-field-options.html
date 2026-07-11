@@ -1,0 +1,58 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--muted:#5b6472;--blue:#0064D2}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Sora',system-ui,sans-serif;background:#e9edf2;color:#1a2230;padding:36px clamp(14px,3vw,40px) 120px}
+  .wrap{max-width:1200px;margin:0 auto}
+  h1{font-size:34px;font-weight:800;letter-spacing:-.03em;margin-bottom:6px}
+  .lead{color:var(--muted);font-size:15.5px;max-width:760px;line-height:1.5;margin-bottom:34px}
+  .opt{margin-bottom:52px}
+  .lbl{display:flex;align-items:baseline;gap:11px;margin-bottom:12px}
+  .lbl b{font-size:19px;font-weight:800;color:var(--blue)}
+  .lbl .t{font-size:15.5px;font-weight:700}
+  .lbl .d{color:var(--muted);font-size:13px;margin-left:auto;text-align:right;max-width:52%}
+  .hero{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 30px 70px -38px rgba(9,20,48,.4);background:#0a1130}
+  .hero .base{display:block;width:100%}
+  .zoom{aspect-ratio:16/9;background:#0a1130}
+  .zoom .base{position:absolute;width:150%;height:auto;left:-40%;top:-18%;max-width:none}
+  .ins{position:absolute;overflow:hidden}
+  .ins img{width:100%;height:100%;object-fit:cover;display:block}
+  .fe{-webkit-mask-image:radial-gradient(ellipse 98% 98% at 50% 50%,#000 34%,transparent 84%);mask-image:radial-gradient(ellipse 98% 98% at 50% 50%,#000 34%,transparent 84%)}
+  /* 1 stacked top-right (tight pocket, clear of balloon+field) */
+  .o1 .a{width:27%;aspect-ratio:16/10;right:2%;top:6%}
+  .o1 .b{width:27%;aspect-ratio:16/10;right:2%;top:31%}
+  /* 2 cascade top-right */
+  .o2 .a{width:30%;aspect-ratio:16/11;right:2%;top:6%}
+  .o2 .b{width:25%;aspect-ratio:16/11;right:24%;top:30%}
+  /* 3 zoom+field-left, insets right stacked */
+  .o3 .a{width:30%;aspect-ratio:16/10;right:2%;top:8%}
+  .o3 .b{width:30%;aspect-ratio:16/10;right:2%;top:38%}
+  /* 4 cascade */
+  .o4 .a{width:36%;aspect-ratio:16/11;right:1%;top:5%}
+  .o4 .b{width:30%;aspect-ratio:16/11;right:26%;top:30%}
+  /* 5 big upper band */
+  .o5 .a{width:30%;aspect-ratio:16/12;right:31%;top:6%}
+  .o5 .b{width:30%;aspect-ratio:16/12;right:1%;top:6%}
+</style></head><body>
+<div class="wrap">
+  <h1>Hero — field kept clear</h1>
+  <p class="lead">Just the cards and the cheerleaders (cropped so no balloon repeats), bled in with soft feathered edges, and kept in the upper-right over open sky so the field is never covered. Tell me the number.</p>
+
+  <div class="opt o1"><div class="lbl"><b>1</b><span class="t">Stacked, top-right</span><span class="d">Cards over cheer, upper-right, edges dissolving into the sky.</span></div>
+    <div class="hero"><img class="base" src="photos/football-hero.png"><div class="ins fe a"><img src="photos/set/crop-cards.png"></div><div class="ins fe b"><img src="photos/set/crop-cheer.png"></div></div></div>
+
+  <div class="opt o2"><div class="lbl"><b>2</b><span class="t">Side by side, top</span><span class="d">Both shots in a row across the top, clear of the field.</span></div>
+    <div class="hero"><img class="base" src="photos/football-hero.png"><div class="ins fe a"><img src="photos/set/crop-cards.png"></div><div class="ins fe b"><img src="photos/set/crop-cheer.png"></div></div></div>
+
+  <div class="opt o3"><div class="lbl"><b>3</b><span class="t">Field nudged left + stacked</span><span class="d">Hero zoomed and shifted so the field sits left, insets stacked on the right.</span></div>
+    <div class="hero zoom"><img class="base" src="photos/football-hero.png"><div class="ins fe a"><img src="photos/set/crop-cards.png"></div><div class="ins fe b"><img src="photos/set/crop-cheer.png"></div></div></div>
+
+  <div class="opt o4"><div class="lbl"><b>4</b><span class="t">Cascade</span><span class="d">Cards larger top-right, cheer tucked below-left of it, overlapping softly.</span></div>
+    <div class="hero"><img class="base" src="photos/football-hero.png"><div class="ins fe a"><img src="photos/set/crop-cards.png"></div><div class="ins fe b"><img src="photos/set/crop-cheer.png"></div></div></div>
+
+  <div class="opt o5"><div class="lbl"><b>5</b><span class="t">Upper band, side by side</span><span class="d">Two bigger shots filling the upper-right band.</span></div>
+    <div class="hero"><img class="base" src="photos/football-hero.png"><div class="ins fe a"><img src="photos/set/crop-cards.png"></div><div class="ins fe b"><img src="photos/set/crop-cheer.png"></div></div></div>
+
+</div>
+</body></html>
