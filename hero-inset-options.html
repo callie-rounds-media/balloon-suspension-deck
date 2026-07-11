@@ -1,0 +1,97 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hero — inset treatments</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:oklch(19% .03 265);--muted:oklch(50% .02 260);--line:oklch(90% .01 255);--blue:#0064D2}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Sora',system-ui,sans-serif;background:#e9edf2;color:var(--ink);padding:48px clamp(14px,3vw,44px) 160px}
+  .wrap{max-width:1200px;margin:0 auto}
+  h1{font-size:clamp(26px,4vw,42px);font-weight:800;letter-spacing:-.03em;margin-bottom:8px}
+  .lead{color:var(--muted);font-size:16px;max-width:720px;line-height:1.55;margin-bottom:40px}
+  .opt{margin-bottom:60px}
+  .lbl{display:flex;align-items:baseline;gap:12px;margin-bottom:14px}
+  .lbl b{font-size:20px;font-weight:800;color:var(--blue)}
+  .lbl .t{font-size:16px;font-weight:700}
+  .lbl .d{color:var(--muted);font-size:13.5px;margin-left:auto;text-align:right;max-width:52%}
+
+  .hero{position:relative;border-radius:22px;overflow:hidden;border:1px solid var(--line);box-shadow:0 34px 80px -40px rgba(9,20,48,.4);isolation:isolate}
+  .hero .base{display:block;width:100%}
+  .ins{position:absolute;overflow:hidden;background:#0a1130}
+  .ins img{width:100%;height:100%;object-fit:cover;display:block}
+  .ring{border:5px solid #fff;box-shadow:0 14px 34px -10px rgba(0,0,0,.5)}
+  .circle{border-radius:50%}
+  .round{border-radius:20px}
+  .faded{-webkit-mask-image:radial-gradient(130% 130% at 50% 50%,#000 52%,transparent 100%);mask-image:radial-gradient(130% 130% at 50% 50%,#000 52%,transparent 100%)}
+  .fadedrect{-webkit-mask-image:linear-gradient(90deg,transparent,#000 22%,#000 100%),linear-gradient(0deg,transparent,#000 18%,#000 82%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 22%,#000 100%),linear-gradient(0deg,transparent,#000 18%,#000 82%,transparent);mask-composite:intersect}
+
+  /* O1 stacked circles bottom-right */
+  .o1 .a{width:24%;aspect-ratio:1;right:16%;bottom:8%}
+  .o1 .b{width:19%;aspect-ratio:1;right:5%;bottom:22%}
+  /* O2 overlapping rounded cards */
+  .o2 .a{width:30%;aspect-ratio:4/3;right:15%;bottom:9%;transform:rotate(-3deg)}
+  .o2 .b{width:26%;aspect-ratio:4/3;right:4%;bottom:14%;transform:rotate(4deg)}
+  /* O3 big + small circle cluster */
+  .o3 .a{width:30%;aspect-ratio:1;right:6%;bottom:10%}
+  .o3 .b{width:17%;aspect-ratio:1;right:30%;bottom:6%}
+  /* O4 faded rectangles stacked right */
+  .o4 .a{width:30%;aspect-ratio:16/10;right:3%;top:10%}
+  .o4 .b{width:30%;aspect-ratio:16/10;right:3%;bottom:10%}
+  /* O5 vertical filmstrip flush right */
+  .o5 .a{width:22%;height:40%;right:0;top:8%;border-radius:16px 0 0 16px}
+  .o5 .b{width:22%;height:40%;right:0;bottom:8%;border-radius:16px 0 0 16px}
+  /* O6 floating white card right */
+  .o6 .card{position:absolute;right:4%;bottom:8%;width:30%;background:rgba(255,255,255,.9);backdrop-filter:blur(6px);border-radius:20px;padding:10px;box-shadow:0 20px 50px -18px rgba(0,0,0,.5);display:flex;flex-direction:column;gap:8px}
+  .o6 .card .p{border-radius:12px;overflow:hidden;aspect-ratio:16/10}
+  .o6 .card .p img{width:100%;height:100%;object-fit:cover;display:block}
+  .o6 .card .cap{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);padding:2px 4px 4px}
+  /* O7 bottom filmstrip row */
+  .o7 .strip{position:absolute;left:4%;bottom:5%;display:flex;gap:10px}
+  .o7 .strip .p{width:120px;aspect-ratio:4/3;border-radius:12px;overflow:hidden;border:3px solid #fff;box-shadow:0 10px 24px -8px rgba(0,0,0,.5)}
+  .o7 .strip .p img{width:100%;height:100%;object-fit:cover;display:block}
+  /* O8 tilted photo cards */
+  .o8 .a{width:28%;aspect-ratio:3/4;right:14%;bottom:8%;transform:rotate(-7deg)}
+  .o8 .b{width:28%;aspect-ratio:3/4;right:3%;bottom:11%;transform:rotate(6deg)}
+  /* O9 single large circle */
+  .o9 .a{width:32%;aspect-ratio:1;right:5%;bottom:9%}
+  /* O10 gradient corner faded duo */
+  .o10 .glow{position:absolute;right:0;bottom:0;width:52%;height:70%;background:radial-gradient(120% 120% at 90% 90%,rgba(6,10,25,.82),transparent 70%)}
+  .o10 .a{width:26%;aspect-ratio:16/10;right:20%;bottom:10%}
+  .o10 .b{width:26%;aspect-ratio:16/10;right:4%;bottom:20%}
+</style></head><body>
+<div class="wrap">
+  <h1>Hero — inset treatments</h1>
+  <p class="lead">Ten ways to lay the two supporting shots (pack break + cheer) over the hero, bigger and mostly grouped to the right. Circle cuts, rounded cards, faded/feathered edges, tilted prints, a floating card. Tell me the number(s) you like and I'll build it into the deck. Full-width so you can judge them at real scale.</p>
+
+  <div class="opt o1"><div class="lbl"><b>1</b><span class="t">Stacked circles, bottom-right</span><span class="d">Two big circles overlapping in the corner. Clean, bold, insets much larger.</span></div>
+    <div class="hero"><img class="base" src="photos/football-hero.png"><div class="ins circle ring a"><img src="photos/set/06-packtear-a.png"></div><div class="ins circle ring b"><img src="photos/set/03-cheer-a.png"></div></div></div>
+
+  <div class="opt o2"><div class="lbl"><b>2</b><span class="t">Overlapping photo cards</span><span class="d">Two rounded rectangles, slightly overlapping and tilted, like laid-down prints.</span></div>
+    <div class="hero"><img class="base" src="photos/football-hero.png"><div class="ins round ring a"><img src="photos/set/06-packtear-a.png"></div><div class="ins round ring b"><img src="photos/set/03-cheer-a.png"></div></div></div>
+
+  <div class="opt o3"><div class="lbl"><b>3</b><span class="t">Big + small circle cluster</span><span class="d">One large circle anchored right, a smaller one tucked beside it.</span></div>
+    <div class="hero"><img class="base" src="photos/football-hero.png"><div class="ins circle ring a"><img src="photos/set/06-packtear-a.png"></div><div class="ins circle ring b"><img src="photos/set/03-cheer-a.png"></div></div></div>
+
+  <div class="opt o4"><div class="lbl"><b>4</b><span class="t">Faded rectangles, right</span><span class="d">Two shots with soft feathered edges blending into the hero. Subtle, editorial.</span></div>
+    <div class="hero"><img class="base" src="photos/football-hero.png"><div class="ins faded a"><img src="photos/set/06-packtear-a.png"></div><div class="ins faded b"><img src="photos/set/03-cheer-a.png"></div></div></div>
+
+  <div class="opt o5"><div class="lbl"><b>5</b><span class="t">Filmstrip, flush right edge</span><span class="d">Two tall panels docked to the right edge. Feels like a broadcast lower-third.</span></div>
+    <div class="hero"><img class="base" src="photos/football-hero.png"><div class="ins ring a"><img src="photos/set/06-packtear-a.png"></div><div class="ins ring b"><img src="photos/set/03-cheer-a.png"></div></div></div>
+
+  <div class="opt o6"><div class="lbl"><b>6</b><span class="t">Floating glass card</span><span class="d">A frosted card on the right holding both shots plus a tiny label. Most designed.</span></div>
+    <div class="hero"><img class="base" src="photos/football-hero.png"><div class="card"><div class="cap">Inside the shoot</div><div class="p"><img src="photos/set/06-packtear-a.png"></div><div class="p"><img src="photos/set/03-cheer-a.png"></div></div></div></div>
+
+  <div class="opt o7"><div class="lbl"><b>7</b><span class="t">Bottom filmstrip row</span><span class="d">Three small prints in a row along the bottom. Reads like a caption strip.</span></div>
+    <div class="hero"><img class="base" src="photos/football-hero.png"><div class="strip"><div class="p"><img src="photos/set/06-packtear-a.png"></div><div class="p"><img src="photos/set/03-cheer-a.png"></div><div class="p"><img src="photos/set/02-pull-a.png"></div></div></div></div>
+
+  <div class="opt o8"><div class="lbl"><b>8</b><span class="t">Tilted prints, bottom-right</span><span class="d">Two portrait prints fanned at angles. Playful, scrapbook energy.</span></div>
+    <div class="hero"><img class="base" src="photos/football-hero.png"><div class="ins round ring a"><img src="photos/set/06-packtear-a.png"></div><div class="ins round ring b"><img src="photos/set/03-cheer-a.png"></div></div></div>
+
+  <div class="opt o9"><div class="lbl"><b>9</b><span class="t">Single big circle</span><span class="d">Just one large circle (the pack break). Simplest, lets the hero breathe.</span></div>
+    <div class="hero"><img class="base" src="photos/football-hero.png"><div class="ins circle ring a"><img src="photos/set/06-packtear-a.png"></div></div></div>
+
+  <div class="opt o10"><div class="lbl"><b>10</b><span class="t">Faded duo on a corner glow</span><span class="d">Two feathered shots sitting on a soft dark corner gradient, so they read clearly.</span></div>
+    <div class="hero"><img class="base" src="photos/football-hero.png"><div class="glow"></div><div class="ins faded a"><img src="photos/set/06-packtear-a.png"></div><div class="ins faded b"><img src="photos/set/03-cheer-a.png"></div></div></div>
+
+</div>
+</body></html>

@@ -1,0 +1,109 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Built for eBay Live · layout options</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:oklch(19% .03 265);--muted:oklch(50% .02 260);--line:oklch(92% .008 255);--surface-alt:oklch(97.7% .006 250);--blue:#0064D2;--red:#E53238;--yellow:#F5AF02;--green:#86B817;--navy:radial-gradient(120% 90% at 50% 30%,#16265f,#0a1130 60%,#060a24)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Sora',system-ui,sans-serif;background:#eef1f5;color:var(--ink);padding:48px clamp(16px,4vw,56px) 140px}
+  .wrap{max-width:1180px;margin:0 auto}
+  h1{font-size:clamp(26px,4vw,40px);font-weight:800;letter-spacing:-.03em;margin-bottom:8px}
+  .lead{color:var(--muted);font-size:16px;max-width:660px;line-height:1.5;margin-bottom:44px}
+  .opt{margin-bottom:56px}
+  .optlbl{display:flex;align-items:baseline;gap:12px;margin-bottom:16px}
+  .optlbl b{font-size:20px;font-weight:800;color:var(--blue)}
+  .optlbl .t{font-size:17px;font-weight:700}
+  .optlbl .d{color:var(--muted);font-size:14px;margin-left:auto;text-align:right;max-width:46%}
+  /* shared bits */
+  .eyebrow{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--red)}
+  .hl{font-size:clamp(24px,2.6vw,34px);font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-top:18px}
+  .copy{font-size:17px;line-height:1.6;color:var(--muted);margin-top:16px;max-width:44ch}
+  .phone{border-radius:26px;border:1px solid var(--line);box-shadow:0 30px 70px -34px rgba(9,20,48,.4);display:block;width:100%}
+  .card{border:1px solid var(--line);border-radius:26px;background:#fff;padding:clamp(24px,3vw,52px)}
+  /* A: split + feature rows */
+  .a{display:grid;grid-template-columns:1fr 240px;gap:56px;align-items:center}
+  .feat{margin-top:26px;display:flex;flex-direction:column;gap:14px}
+  .feat .row{display:flex;gap:12px;align-items:flex-start}
+  .feat .fdot{width:9px;height:9px;border-radius:50%;margin-top:7px;flex:none}
+  .feat .ft{font-weight:700;font-size:15px}
+  .feat .fs{color:var(--muted);font-size:14px;line-height:1.45}
+  /* B: navy */
+  .bcard{border-radius:26px;background:var(--navy);padding:clamp(28px,3vw,56px);color:#fff}
+  .b{display:grid;grid-template-columns:1fr 240px;gap:56px;align-items:center}
+  .bcard .copy{color:rgba(255,255,255,.72)}
+  .bcard .hl{color:#fff}
+  /* C: stacked centered */
+  .c{text-align:center;display:flex;flex-direction:column;align-items:center}
+  .c .eyebrow{justify-content:center}
+  .c .copy{margin-left:auto;margin-right:auto;max-width:52ch}
+  .c .phone{max-width:250px;margin-top:34px}
+  /* D: phone left + stat strip */
+  .d{display:grid;grid-template-columns:240px 1fr;gap:56px;align-items:center}
+  .stats{margin-top:22px;display:flex;gap:10px;flex-wrap:wrap}
+  .chip{border:1px solid var(--line);border-radius:20px;padding:8px 14px;font-size:13px;font-weight:600;color:var(--ink);background:var(--surface-alt)}
+  .chip b{color:var(--blue)}
+  @media(max-width:760px){.a,.b,.d{grid-template-columns:1fr;gap:28px}.a .phone,.b .phone,.d .phone{max-width:240px;margin:0 auto}}
+</style></head><body>
+<div class="wrap">
+  <h1>“Built for eBay Live” — layout options</h1>
+  <p class="lead">Same content, four ways to lay it out so the tall phone doesn't leave an empty gap. Tell me the letter you like (mix-and-match welcome) and I'll drop it into the deck.</p>
+
+  <!-- A -->
+  <div class="opt">
+    <div class="optlbl"><b>A</b><span class="t">Split + feature rows</span><span class="d">Three quick feature lines fill the left column so it balances the phone. Most informative.</span></div>
+    <div class="card"><div class="a">
+      <div>
+        <div class="eyebrow"><span class="dot"></span>Built for eBay Live</div>
+        <div class="hl">Every pull, live for bids.</div>
+        <p class="copy">With a Starlink on board, the whole stunt could potentially even stream live from the sky.</p>
+        <div class="feat">
+          <div class="row"><span class="fdot" style="background:var(--red)"></span><div><div class="ft">A live auction on every pull</div><div class="fs">Cards go up for real-time bidding as they're revealed.</div></div></div>
+          <div class="row"><span class="fdot" style="background:var(--yellow)"></span><div><div class="ft">Break'n Bad hosts the break</div><div class="fs">The card-break seller who already brought this to eBay.</div></div></div>
+          <div class="row"><span class="fdot" style="background:var(--green)"></span><div><div class="ft">Streams from the sky</div><div class="fs">Starlink on board makes a live feed possible.</div></div></div>
+        </div>
+      </div>
+      <img class="phone" src="photos/set/ebaylive-app.png?v=3" alt="">
+    </div></div>
+  </div>
+
+  <!-- B -->
+  <div class="opt">
+    <div class="optlbl"><b>B</b><span class="t">Navy panel</span><span class="d">Dark cinematic panel (like the closing slide). The phone pops and it feels premium.</span></div>
+    <div class="bcard"><div class="b">
+      <div>
+        <div class="eyebrow" style="color:#fff"><span class="dot"></span>Built for eBay Live</div>
+        <div class="hl">Every pull, live for bids.</div>
+        <p class="copy">Break'n Bad runs the card break as a live auction, straight from the platform. With a Starlink on board, the whole stunt could potentially even stream live from the sky.</p>
+      </div>
+      <img class="phone" src="photos/set/ebaylive-app.png?v=3" alt="">
+    </div></div>
+  </div>
+
+  <!-- C -->
+  <div class="opt">
+    <div class="optlbl"><b>C</b><span class="t">Stacked &amp; centered</span><span class="d">Copy centered above a centered phone. No side gap at all, cleanest and simplest.</span></div>
+    <div class="card"><div class="c">
+      <div class="eyebrow"><span class="dot"></span>Built for eBay Live</div>
+      <div class="hl">Every pull, live for bids.</div>
+      <p class="copy">With a Starlink on board, the whole stunt could potentially even stream live from the sky.</p>
+      <img class="phone" src="photos/set/ebaylive-app.png?v=3" alt="">
+    </div></div>
+  </div>
+
+  <!-- D -->
+  <div class="opt">
+    <div class="optlbl"><b>D</b><span class="t">Phone left + live stats</span><span class="d">Phone leads on the left; a couple of “live” chips on the right add energy and fill space.</span></div>
+    <div class="card"><div class="d">
+      <img class="phone" src="photos/set/ebaylive-app.png?v=3" alt="">
+      <div>
+        <div class="eyebrow"><span class="dot"></span>Built for eBay Live</div>
+        <div class="hl">Every pull, live for bids.</div>
+        <p class="copy">With a Starlink on board, the whole stunt could potentially even stream live from the sky.</p>
+        <div class="stats"><span class="chip"><b>Live</b> card auction</span><span class="chip"><b>18.6K</b> watching</span><span class="chip"><b>Break'n Bad</b> hosting</span></div>
+      </div>
+    </div></div>
+  </div>
+
+</div>
+</body></html>
