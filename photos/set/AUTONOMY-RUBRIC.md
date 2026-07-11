@@ -33,3 +33,6 @@ eBay LIVE rainbow balloon HIGH in open sky, basket beneath with a couple people.
 - 04-wide-a.png — REJECT (too many players ~7-8). Kept as busy backup only.
 - 04-wide-b.png — APPROVED. Wide co-brand hero: EXACTLY 6 players (3 red + 3 white at the 50) + 3 cheerleaders, balloon+cables above, suspended platform in clouds, lights, eBay skirt. Count-fix re-prompt worked ("exactly six, 3 red 3 white at the 50, remove extras").
 - COUNT RULE learning: GPT overshoots player count on wide shots; fix by re-prompting with exact placement + colors, then re-count at full-res.
+- 05-celebrate-a.png — APPROVED. Two teammates (red) on field reacting to a pulled card, balloon above, clouds below. Clean hands, card clear.
+- 06-packtear-a.png — APPROVED. Hands ripping a foil card pack, cards spilling, balloon blurred behind, golden light. Clean.
+- KEEPERS so far: 01-cardbreak-a, 02-pull-a, 03-cheer-a, 04-wide-b, 05-celebrate-a, 06-packtear-a. (04-wide-a = busy backup.)
