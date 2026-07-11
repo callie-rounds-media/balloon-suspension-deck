@@ -1,0 +1,64 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hero — cutouts</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--muted:#5b6472;--blue:#0064D2}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Sora',system-ui,sans-serif;background:#e9edf2;color:#1a2230;padding:44px clamp(14px,3vw,44px) 160px}
+  .wrap{max-width:1200px;margin:0 auto}
+  h1{font-size:clamp(24px,4vw,38px);font-weight:800;letter-spacing:-.03em;margin-bottom:8px}
+  .lead{color:var(--muted);font-size:15.5px;max-width:820px;line-height:1.55;margin-bottom:38px}
+  .opt{margin-bottom:56px}
+  .lbl{display:flex;align-items:baseline;gap:12px;margin-bottom:13px}
+  .lbl b{font-size:20px;font-weight:800;color:var(--blue)}
+  .lbl .t{font-size:16px;font-weight:700}
+  .lbl .d{color:var(--muted);font-size:13.5px;margin-left:auto;text-align:right;max-width:56%}
+
+  .hero{position:relative;border-radius:22px;overflow:hidden;box-shadow:0 34px 80px -40px rgba(9,20,48,.4);background:#0a1130;aspect-ratio:16/9}
+  .hero .base{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .shiftL .base{object-position:24% 46%;width:122%;left:-11%}
+  .cut{position:absolute;height:auto;display:block;filter:drop-shadow(0 10px 22px rgba(10,20,48,.28))}
+
+  /* A framed foreground: cheer bottom-left, cards bottom-right */
+  .A .cheer{width:31%;left:-1%;bottom:-1%}
+  .A .cards{width:33%;right:-1%;bottom:-2%}
+  /* B cards hero upper-right, cheer support lower-left */
+  .B .cards{width:40%;right:-1%;top:3%}
+  .B .cheer{width:28%;left:-1%;bottom:-1%}
+  /* C both on the right */
+  .C .cards{width:34%;right:-1%;top:2%}
+  .C .cheer{width:33%;right:-2%;bottom:-1%}
+  /* D field nudged left, cutouts right */
+  .D .cards{width:36%;right:-1%;top:3%}
+  .D .cheer{width:31%;right:-1%;bottom:-1%}
+  /* E cheer band across the bottom, cards top-right */
+  .E .cheer{width:42%;left:50%;transform:translateX(-50%);bottom:-2%}
+  .E .cards{width:31%;right:-1%;top:3%}
+</style></head><body>
+<div class="wrap">
+  <h1>Hero — real cutouts, natural bleed</h1>
+  <p class="lead">No boxes and no feathered rectangle slicing through anyone. Both shots are cut out to the subject, so the hands and the cheerleaders stay whole and the edges just dissolve into the sky. Field stays clear in every one. Tell me the number and I'll build it into the deck.</p>
+
+  <div class="opt A"><div class="lbl"><b>1</b><span class="t">Foreground frame</span><span class="d">Cheer rising bottom-left, the pack break bottom-right, field and balloon framed between them.</span></div>
+    <div class="hero"><img class="base" src="photos/football-hero.png">
+      <img class="cut cheer" src="photos/set/cut-cheer.png"><img class="cut cards" src="photos/set/cut-cards.png"></div></div>
+
+  <div class="opt B"><div class="lbl"><b>2</b><span class="t">Pack break lead</span><span class="d">The hands and cards large in the upper-right, cheer smaller anchoring the lower-left.</span></div>
+    <div class="hero"><img class="base" src="photos/football-hero.png">
+      <img class="cut cards" src="photos/set/cut-cards.png"><img class="cut cheer" src="photos/set/cut-cheer.png"></div></div>
+
+  <div class="opt C"><div class="lbl"><b>3</b><span class="t">Both on the right</span><span class="d">Cards top-right over the pack, cheer beneath them, all grouped on the right over open sky.</span></div>
+    <div class="hero"><img class="base" src="photos/football-hero.png">
+      <img class="cut cards" src="photos/set/cut-cards.png"><img class="cut cheer" src="photos/set/cut-cheer.png"></div></div>
+
+  <div class="opt D"><div class="lbl"><b>4</b><span class="t">Field nudged left</span><span class="d">Hero shifted so the field sits left, opening the right for the pack break over cheer.</span></div>
+    <div class="hero shiftL"><img class="base" src="photos/football-hero.png">
+      <img class="cut cards" src="photos/set/cut-cards.png"><img class="cut cheer" src="photos/set/cut-cheer.png"></div></div>
+
+  <div class="opt E"><div class="lbl"><b>5</b><span class="t">Cheer front row</span><span class="d">Cheer as a front row across the bottom, the pack break tucked top-right.</span></div>
+    <div class="hero"><img class="base" src="photos/football-hero.png">
+      <img class="cut cheer" src="photos/set/cut-cheer.png"><img class="cut cards" src="photos/set/cut-cards.png"></div></div>
+
+</div>
+</body></html>
